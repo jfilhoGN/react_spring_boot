@@ -29,6 +29,10 @@ public class FuncionarioController {
        return StreamSupport.stream(funcionarioRepository.findAll().spliterator(), false) .collect(Collectors.toList());
     }
 
+    //PARA TERMINAR
+    // criar os posts e o frontend, a partir do frontend implementar mais passos.
+
+
 
     @RequestMapping("/hello")
     public String myData() {
