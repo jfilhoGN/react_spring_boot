@@ -27,9 +27,26 @@ class Funcionario extends React.Component {
    }
 
    renderFuncionario(funcionario){
-     return <li>{funcionario.nome}</li>
+     return (
+       <li class="collection-item"><b>Nome:</b> {funcionario.nome}
+            <p>
+            <b>RG:</b> {funcionario.rg}
+            <br></br>
+            <b>Endereço:</b> {funcionario.endereco}
+            </p>
+            <button class="btn waves-effect waves-light btn-small" type="submit" name="action">
+              <i class="material-icons">delete</i>
+            </button>
+        </li>
+      )
    }
 
+  handleInputChange = () => {
+    this.setState({
+      // Fazer a query
+      //query: this.search.value
+    })
+  }
    
 
   render() {
@@ -38,10 +55,18 @@ class Funcionario extends React.Component {
       <Col m={8} s={12}>
           <h5>Funcionários</h5>
           <Card>
+          <form>
+            <input
+              placeholder="Buscar por..."
+              ref={input => this.search = input}
+              onChange={this.handleInputChange}
+            />
+            <p>{this.state.query}</p>
+          </form>
           <div>
-              <h1>Funcionários</h1>
-              <ul>
+              <ul class="collection">
               {this.state.funcionarios.map(this.renderFuncionario)}
+              
               </ul>
            </div>
           </Card>

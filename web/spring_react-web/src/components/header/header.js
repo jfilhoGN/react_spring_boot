@@ -6,9 +6,10 @@ import { NavLink } from 'react-router-dom'
 
 const Header = () => (
     <Row>  
-      <Navbar className="grey darken-2">
+      <Navbar className="blue darken-2">
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='funcionarios'>Funcionarios</NavLink></li>
+        <li><NavLink to='/addfuncionarios'>Add Funcionario</NavLink></li>
       </Navbar>
     </Row>
   );

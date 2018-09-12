@@ -2,6 +2,7 @@ package com.elotech.exemplo.funcionario.controller;
 
 import com.elotech.exemplo.funcionario.model.Funcionario;
 import com.elotech.exemplo.funcionario.repository.FuncionarioRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class FuncionarioController {
         return "Welcome to Spring Boot Tutorials";
     }
 
+    @CrossOrigin
     @RequestMapping("/funcionario")
     public @ResponseBody List<Funcionario> getFuncionario(){
        return StreamSupport.stream(funcionarioRepository.findAll().spliterator(), false) .collect(Collectors.toList());
