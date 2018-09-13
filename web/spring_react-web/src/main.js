@@ -15,7 +15,7 @@ const Main = () => (
     <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/funcionarios' component={Funcionario}/>
-        <Route path='/addfuncionarios' component={AddFuncionario}/>
+        <Route path='/addfuncionario' component={AddFuncionario}/>
     </Switch>
     </Container>
   </main>  

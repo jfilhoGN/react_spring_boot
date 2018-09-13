@@ -9,7 +9,7 @@ const Header = () => (
       <Navbar className="blue darken-2">
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='funcionarios'>Funcionarios</NavLink></li>
-        <li><NavLink to='/addfuncionarios'>Add Funcionario</NavLink></li>
+        <li><NavLink to='/addfuncionario'>Add Funcionario</NavLink></li>
       </Navbar>
     </Row>
   );

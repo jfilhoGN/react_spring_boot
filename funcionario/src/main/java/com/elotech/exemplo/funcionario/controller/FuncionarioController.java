@@ -2,11 +2,17 @@ package com.elotech.exemplo.funcionario.controller;
 
 import com.elotech.exemplo.funcionario.model.Funcionario;
 import com.elotech.exemplo.funcionario.repository.FuncionarioRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import jdk.nashorn.internal.parser.JSONParser;
+import org.json.JSONObject;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.DefaultResponseErrorHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -22,7 +28,7 @@ public class FuncionarioController {
 
     @RequestMapping("/")
     public String welcome() {
-        return "Welcome to Spring Boot Tutorials";
+        return "Primeiro exemplo de Spring Boot + ReactJS";
     }
 
     @CrossOrigin
@@ -31,14 +37,15 @@ public class FuncionarioController {
        return StreamSupport.stream(funcionarioRepository.findAll().spliterator(), false) .collect(Collectors.toList());
     }
 
-    //PARA TERMINAR
-    // criar os posts e o frontend, a partir do frontend implementar mais passos.
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/addfuncionario")
+    public ResponseEntity adicionarFuncionario(@RequestBody Funcionario funcionario) {
+        funcionarioRepository.save(funcionario);
 
 
 
-    @RequestMapping("/hello")
-    public String myData() {
-        return "Hello Spring Boot";
+        return ResponseEntity.ok().build();
     }
+
 
 }
