@@ -2,23 +2,19 @@ package com.elotech.exemplo.funcionario.controller;
 
 import com.elotech.exemplo.funcionario.model.Funcionario;
 import com.elotech.exemplo.funcionario.repository.FuncionarioRepository;
-import jdk.nashorn.internal.parser.JSONParser;
-import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.DefaultResponseErrorHandler;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 public class FuncionarioController {
+
+    public static final Logger logger = LoggerFactory.getLogger(FuncionarioController.class);
 
     public FuncionarioController(FuncionarioRepository funcionarioRepository) {
 
@@ -41,11 +37,19 @@ public class FuncionarioController {
     @RequestMapping(method = RequestMethod.POST, value = "/addfuncionario")
     public ResponseEntity adicionarFuncionario(@RequestBody Funcionario funcionario) {
         funcionarioRepository.save(funcionario);
-
-
-
         return ResponseEntity.ok().build();
     }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delfuncionario/{id}")
+    public ResponseEntity deletarFuncionario(@PathVariable("id") long id){
+        logger.info("Fetching & Deleting User with id {}", id);
+
+        funcionarioRepository.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
+
 
 
 }
