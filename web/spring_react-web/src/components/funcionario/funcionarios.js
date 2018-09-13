@@ -1,7 +1,7 @@
 // Importando o React
 import React from "react";
 // Importando os components necessários da lib react-materialize
-import { Row, Col, Card} from 'react-materialize';
+import { Row, Col, Card,Button} from 'react-materialize';
 // Importando bib para Ajax
 import axios from 'axios';
 
@@ -34,9 +34,9 @@ class Funcionario extends React.Component {
             <br></br>
             <b>Endereço:</b> {funcionario.endereco}
             </p>
-            <button class="btn waves-effect waves-light btn-small" type="submit" name="action">
+            <Button class="btn waves-effect waves-light btn-small" type="submit" name="action">
               <i class="material-icons">delete</i>
-            </button>
+            </Button>
         </li>
       )
    }

@@ -4,8 +4,6 @@ import './App.css';
 import Header from './components/header/header';
 import Main from './main';
 
-
-
 class App extends Component {
 
   render() {
