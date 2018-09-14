@@ -9,11 +9,12 @@ class Funcionario extends React.Component {
 
   constructor() {
     super();
-    this.handleClick = this.handleClick.bind(this)
+    this.deleteClick = this.deleteClick.bind(this)
     this.renderFuncionario = this.renderFuncionario.bind(this);
     this.state = {
         funcionarios: [],
-        hasError: false
+        hasError: false,
+        edit: false,
     }
 
   }
@@ -22,7 +23,8 @@ class Funcionario extends React.Component {
   axios.get('http://192.168.0.255:8080/api/colaboradores')
       .then(response => { 
         this.setState({
-            funcionarios: response.data
+            funcionarios: response.data,
+            //isLoading: true
         });
       })
       .catch(error => {
@@ -39,16 +41,24 @@ class Funcionario extends React.Component {
     })
   }
 
-  handleClick = (id) => {
+  deleteClick = (id) => {
     const url = 'http://192.168.0.255:8080/api/colaboradores';
-
-    // axios({
-    //   method: 'DELETE',
-    //   url: '/{id}',
-    //   headers: { 'Content-Type': 'application/json' },
-    // });
     axios.delete(`${url}/${id}`);
     return this.componentDidMount();
+  }
+
+  editClick = (id) =>{
+    const url = 'http://192.168.0.255:8080/api/colaboradores';
+    axios.get(`${url}/${id}`)
+      .then(response => { 
+        this.setState({
+            funcionarios: response.data,
+            edit: true
+        });
+      })
+      .catch(error => {
+          console.log(error);
+      });
   }
 
 
@@ -61,10 +71,10 @@ class Funcionario extends React.Component {
           <br></br>
           <b>CPF:</b> {funcionario.cpf}
           </p>
-          <button onClick={() => this.handleClick(funcionario.id)} className="btn waves-effect waves-light btn-small" type="submit" name="actionDelete">
+          <button onClick={() => this.deleteClick(funcionario.id)} className="btn waves-effect waves-light btn-small" type="submit" name="actionDelete">
             <i className="material-icons">delete</i>
           </button>
-          <button className="btn waves-effect waves-light btn-small" type="submit" name="actionEdit">
+          <button onClick={() => this.editClick(funcionario.id)} className="btn waves-effect waves-light btn-small" type="submit" name="actionEdit">
             <i className="material-icons">edit</i>
           </button>
       </li>
@@ -97,7 +107,6 @@ class Funcionario extends React.Component {
           <div>
               <ul className="collection">
               {this.state.funcionarios.map(this.renderFuncionario)}
-              
               </ul>
            </div>
           </Card>
