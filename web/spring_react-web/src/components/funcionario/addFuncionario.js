@@ -74,7 +74,7 @@ class AddFuncionario extends React.Component{
 
     };
 
-    //Atualizar funcionário
+    //Atualizar funcionário, tem que arrumar
     handleUpdate = (state) => {
         axios.put("http://192.168.0.255:8080/api/colaboradores/", {
             body: JSON.stringify(state),
