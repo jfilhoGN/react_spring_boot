@@ -3,7 +3,9 @@ import React from "react";
 import {Navbar, Row} from 'react-materialize';
 // Importando o Component NavLink da nossa lib de rotas
 import { NavLink } from 'react-router-dom'
-
+/* 
+Arquivo responsável pelo cabeçalho da página 
+*/
 const Header = () => (
     <Row>  
       <Navbar className="blue darken-2">

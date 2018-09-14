@@ -9,13 +9,16 @@ import { Switch, Route } from 'react-router-dom'
 import Funcionario from "./components/funcionario/funcionarios";
 import AddFuncionario from "./components/funcionario/addFuncionario"
 
+
+/* Camada que possui as rotas que serão seguidas */
 const Main = () => (
   <main>
     <Container>
     <Switch>
         <Route exact path='/' component={Home}/>
         <Route path='/funcionarios' component={Funcionario}/>
-        <Route path='/addfuncionario' component={AddFuncionario}/>
+        <Route path='/addfuncionario' exact={true} component={AddFuncionario}/>
+        <Route path="/addfuncionario/:funcionarioId" component={AddFuncionario} />
     </Switch>
     </Container>
   </main>  

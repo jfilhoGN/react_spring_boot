@@ -1,12 +1,13 @@
 // Importando o React
 import React from "react";
 // Importando os components necessários da lib react-materialize
-import { Row, Col, Card} from 'react-materialize';
+import { Row, Col, Card, Icon, CollectionItem} from 'react-materialize';
 // Importando bib para Ajax
 import axios from 'axios';
+import Collection from "react-materialize/lib/Collection";
 
 class Funcionario extends React.Component {
-
+  /* Construtor da classe que possui os estados */
   constructor() {
     super();
     this.deleteClick = this.deleteClick.bind(this)
@@ -14,7 +15,6 @@ class Funcionario extends React.Component {
     this.state = {
         funcionarios: [],
         hasError: false,
-        edit: false,
     }
 
   }
@@ -48,28 +48,18 @@ class Funcionario extends React.Component {
   }
 
   editClick = (id) =>{
-    const url = 'http://192.168.0.255:8080/api/colaboradores';
-    axios.get(`${url}/${id}`)
-      .then(response => { 
-        this.setState({
-            funcionarios: response.data,
-            edit: true
-        });
-      })
-      .catch(error => {
-          console.log(error);
-      });
+    this.props.history.push(`/addfuncionario/${id}`)
   }
 
 
   renderFuncionario(funcionario) {
     return (
-      <li key={funcionario.id} className="collection-item">
-          <b>Nome:</b> {funcionario.nome}
+      <CollectionItem key={funcionario.id} className="collection-item" >
+          <Icon small>person</Icon> {funcionario.nome}
           <p>
-          <b>Email:</b> {funcionario.email}
+          <Icon small>email</Icon> {funcionario.email}
           <br></br>
-          <b>CPF:</b> {funcionario.cpf}
+          <Icon small>assignment_ind</Icon> {funcionario.cpf}
           </p>
           <button onClick={() => this.deleteClick(funcionario.id)} className="btn waves-effect waves-light btn-small" type="submit" name="actionDelete">
             <i className="material-icons">delete</i>
@@ -77,7 +67,7 @@ class Funcionario extends React.Component {
           <button onClick={() => this.editClick(funcionario.id)} className="btn waves-effect waves-light btn-small" type="submit" name="actionEdit">
             <i className="material-icons">edit</i>
           </button>
-      </li>
+      </CollectionItem>
     )
   }
 
@@ -94,7 +84,6 @@ class Funcionario extends React.Component {
     return (
       <Row>
       <Col m={8} s={12}>
-          <h5>Funcionários</h5>
           <Card>
           <form>
             <input
@@ -105,9 +94,9 @@ class Funcionario extends React.Component {
             <p>{this.state.query}</p>
           </form>
           <div>
-              <ul className="collection">
+              <Collection className="collection" header="Funcionários">
               {this.state.funcionarios.map(this.renderFuncionario)}
-              </ul>
+              </Collection>
            </div>
           </Card>
       </Col>
