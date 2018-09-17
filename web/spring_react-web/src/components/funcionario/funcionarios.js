@@ -1,7 +1,7 @@
 // Importando o React
 import React from "react";
 // Importando os components necessários da lib react-materialize
-import { Row, Col, Card, Icon, CollectionItem} from 'react-materialize';
+import { Row, Col, Card, Icon, CollectionItem, Button} from 'react-materialize';
 // Importando bib para Ajax
 import axios from 'axios';
 import Collection from "react-materialize/lib/Collection";
@@ -15,31 +15,39 @@ class Funcionario extends React.Component {
     this.state = {
         funcionarios: [],
         hasError: false,
+        loading: false
     }
-
+    this.arrayholder = [];
   }
 
   componentDidMount() {
-  axios.get('http://192.168.0.255:8080/api/colaboradores')
+    this.setState({loading: true});
+    axios.get('http://192.168.0.255:8080/api/colaboradores')
       .then(response => { 
         this.setState({
             funcionarios: response.data,
             //isLoading: true
         });
+        this.arrayholder = response.data;
       })
       .catch(error => {
-          if (error.response.status === 404) {
-            this.setState({ hasError: true });
+          if (error.response) {
+            if(error.response.status === 404){
+              this.setState({ hasError: true , loading:false});
+            }
           } 
-      });
+    });
   }
 
-  handleInputChange = () => {
-    this.setState({
-      // Fazer a query
-      //query: this.search.value
-    })
-  }
+  // procurar funcionario na lista de funcionarios
+  searchFilterFunction = text => {
+    const newData = this.arrayholder.filter(item => {
+      const itemData = `${item.nome.toUpperCase()}`; 
+      const textData = text.target.value.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({funcionarios: newData}); 
+  } 
 
   deleteClick = (id) => {
     const url = 'http://192.168.0.255:8080/api/colaboradores';
@@ -51,6 +59,10 @@ class Funcionario extends React.Component {
     this.props.history.push(`/addfuncionario/${id}`)
   }
 
+  //Button de adicionar funcionário
+  addClick = () =>{
+    this.props.history.push('/addfuncionario')
+  }
 
   renderFuncionario(funcionario) {
     return (
@@ -85,19 +97,19 @@ class Funcionario extends React.Component {
       <Row>
       <Col m={8} s={12}>
           <Card>
-          <form>
-            <input
-              placeholder="Buscar por..."
-              ref={input => this.search = input}
-              onChange={this.handleInputChange}
-            />
-            <p>{this.state.query}</p>
-          </form>
+          <Button onClick={() => this.addClick()} className="btn waves-effect waves-light btn-small" type="submit" name="action">
+              <i className="material-icons">add</i>
+          </Button>
           <div>
-              <Collection className="collection" header="Funcionários">
+            <form>
+              <input
+                onChange={text => this.searchFilterFunction(text)}
+                placeholder="Search" />
+            </form>
+            <Collection className="collection" header="Funcionários">
               {this.state.funcionarios.map(this.renderFuncionario)}
-              </Collection>
-           </div>
+            </Collection>
+          </div>
           </Card>
       </Col>
     </Row>
