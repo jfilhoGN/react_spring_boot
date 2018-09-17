@@ -31,7 +31,7 @@ class AddFuncionario extends React.Component{
     handleSubmit = event =>{
         event.preventDefault();
         
-        axios.post("http://192.168.0.255:8080/api/colaboradores/", 
+        axios.post("/api/colaboradores/", 
         { nome: this.state.nome, 
             email: this.state.email,
             cpf: this.state.cpf,
@@ -76,7 +76,7 @@ class AddFuncionario extends React.Component{
 
     //Atualizar funcionário, tem que arrumar
     handleUpdate = (state) => {
-        axios.put("http://192.168.0.255:8080/api/colaboradores/", {
+        axios.put("/api/colaboradores/", {
             body: JSON.stringify(state),
             headers:{
                 'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ class AddFuncionario extends React.Component{
         const { match: { params } } = this.props;
         console.log(params)
         if (params.funcionarioId) {
-            axios.get(`http://192.168.0.255:8080/api/colaboradores/${params.funcionarioId}`)
+            axios.get(`/api/colaboradores/${params.funcionarioId}`)
           .then(({ data: user }) => {
               console.log(user)
             this.setState({ nome:user.nome, email:user.email, cpf:user.cpf, senha:user.senha, hasEdit:true });
@@ -160,7 +160,7 @@ class AddFuncionario extends React.Component{
                             <Input id="nome" name="nome"  onChange={this.handleNomeChange} placeholder="John Doe" type="text" label="Nome" s={12}><Icon small>person</Icon></Input>
                             <Input id="email" name="email"  onChange={this.handleEmailChange} placeholder="johndoe@john.com" type="text" label="Email" s={12} ><Icon small>email</Icon></Input>
                             <Input id="cpf" name="cpf"  onChange={this.handleCPFChange} placeholder="111.111.111-11" type="text" label="CPF" s={12} ><Icon small>assignment_ind</Icon></Input>
-                            <Input id="senha" name="senha" onChange={this.handleSenhaChange} placeholder="123mudar" type="text" label="Senha" s={12} ><Icon small>lock</Icon></Input>
+                            <Input id="senha" name="senha" onChange={this.handleSenhaChange} placeholder="123mudar" type="password" label="Senha" s={12} ><Icon small>lock</Icon></Input>
                         <Col s={12} m={12}>
                         <Button onClick={this.handleClickOpen} className="btn waves-effect waves-light btn-small" type="submit" name="action">
                             <i className="material-icons">add</i>

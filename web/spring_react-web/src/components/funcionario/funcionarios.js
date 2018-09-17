@@ -22,7 +22,7 @@ class Funcionario extends React.Component {
 
   componentDidMount() {
     this.setState({loading: true});
-    axios.get('http://192.168.0.255:8080/api/colaboradores')
+    axios.get('/api/colaboradores')
       .then(response => { 
         this.setState({
             funcionarios: response.data,
@@ -50,7 +50,7 @@ class Funcionario extends React.Component {
   } 
 
   deleteClick = (id) => {
-    const url = 'http://192.168.0.255:8080/api/colaboradores';
+    const url = '/api/colaboradores';
     axios.delete(`${url}/${id}`);
     return this.componentDidMount();
   }
