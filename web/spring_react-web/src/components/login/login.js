@@ -42,10 +42,13 @@ class Login extends React.Component {
         this.acceptFuncionario(response.data.id,response.data.token);
       }
     })
-    .catch(function (error) {
-      /* if (error.response.status === 401){
-        window.confirm("Usuário ou senha errado")
-      } */
+    .catch((error) => {
+      if (error.response.status === 500){
+        window.confirm("Falha no Banco de Dados");
+      }
+      if (error.response.status === 401){
+        window.confirm("Usuário ou senha errado");
+      }
     })
   }
 

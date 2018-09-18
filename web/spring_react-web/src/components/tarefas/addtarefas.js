@@ -4,6 +4,11 @@ import React from "react";
 import { Row, Card, Input, Icon, Col, Button } from 'react-materialize';
 import Select from 'react-select';
 import axios from 'axios';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 const status = [
     { label: "Fazer", value: 1 },
@@ -15,36 +20,47 @@ const status = [
 
 class AddTarefas extends React.Component {
 
-
     constructor() {
         super();
         this.state = {
             titulo: '',
             descricao: '',
-            status: ''
+            status: '',
+            hasTarefas: false
         }
+    }
+
+    // get id e token do funcionario
+    getFuncionario = () => {
+        const handleStorage = localStorage.getItem('data');
+        return JSON.parse(handleStorage);
     }
 
     // Adicionar Tarefa
     handleTituloTarefa = event => {this.setState({titulo: event.target.value})};
     handleDescricaoTarefa = event => {this.setState({descricao: event.target.value})};
-    handleStatusTarefa = event => {this.setState({status: event.target.value})};
+    handleStatusTarefa = event => {
+        console.log(event.value)
+        this.setState({status: event.value})};
     
     //falta terminar a adicão de tarefas, pegar a url correta
     handleSubmitTarefa = event =>{
-        const {id, token} = this.getFuncionario();
         event.preventDefault();
-        axios.post("/api/colaboradores/", 
+        const {id, token} = this.getFuncionario();
+        axios.post("/api/tarefas/", 
         { titulo: this.state.titulo, 
             descricao: this.state.descricao,
+            colaboradorId: id,
             status: this.state.status,
+            
+        },{
             headers:{
                 'id':id,
                 'token':token
-            }   
-        },)
+            }  
+        })
         .then(res => {
-            //this.setState({hasFuncionario: true});
+            //this.setState({hasTarefas: true});
             console.log(res);
             console.log(res.data)
         })
@@ -52,8 +68,34 @@ class AddTarefas extends React.Component {
         })
     }
     
-
     render() {
+        if (this.state.hasFuncionario) {
+            return (
+                <div>
+                    <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                    >
+                    <DialogTitle id="alert-dialog-title">{"Funcionário Cadastrado"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Deseja cadastrar novo funcionário?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleReturnAddFuncionario} color="primary">
+                        Sim
+                        </Button>
+                        <Button onClick={this.handleReturnFuncionario} color="primary" autoFocus>
+                        Não
+                        </Button>
+                    </DialogActions>
+                    </Dialog>
+                </div>
+            )
+        }
         //titulo, descrição, status (dropdow)
         return (
             <Card>

@@ -24,6 +24,7 @@ const Main = () => (
         <Route path="/addfuncionario/:funcionarioId" component={AddFuncionario} />
         <Route path="/tarefas" component={Tarefas} />
         <Route path="/addtarefas" exact={true} component={AddTarefas}/>
+        <Route path="/addtarefas/:funcionarioId" component={AddTarefas}/>
     </Switch>
     </Container>
   </main>  
