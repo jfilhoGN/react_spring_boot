@@ -13,7 +13,8 @@ class Login extends React.Component {
   }
 
   acceptFuncionario = (id, token) =>{
-    localStorage.setItem(id, token);
+    const json = {id:id, token:token};
+    localStorage.setItem("data", JSON.stringify(json));
     this.props.history.push('/tarefas');
   }
 

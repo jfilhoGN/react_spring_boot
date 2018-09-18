@@ -15,11 +15,15 @@ const status = [
 
 class AddTarefas extends React.Component {
 
-    state = {
-        titulo: '',
-        descricao: '',
-        status: ''
-    };
+
+    constructor() {
+        super();
+        this.state = {
+            titulo: '',
+            descricao: '',
+            status: ''
+        }
+    }
 
     // Adicionar Tarefa
     handleTituloTarefa = event => {this.setState({titulo: event.target.value})};
@@ -28,11 +32,16 @@ class AddTarefas extends React.Component {
     
     //falta terminar a adicão de tarefas, pegar a url correta
     handleSubmitTarefa = event =>{
+        const {id, token} = this.getFuncionario();
         event.preventDefault();
         axios.post("/api/colaboradores/", 
         { titulo: this.state.titulo, 
             descricao: this.state.descricao,
-            status: this.state.status   
+            status: this.state.status,
+            headers:{
+                'id':id,
+                'token':token
+            }   
         },)
         .then(res => {
             //this.setState({hasFuncionario: true});
@@ -63,7 +72,7 @@ class AddTarefas extends React.Component {
                 </Row>
             </Card>
         );
-  }
+    }
 }
 
 export default AddTarefas;
