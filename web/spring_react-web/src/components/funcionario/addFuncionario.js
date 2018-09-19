@@ -68,11 +68,6 @@ class AddFuncionario extends React.Component{
         hasFuncionario: false,
         hasEdit : false})
     }
-    
-    handleClose = () => {
-        this.setState({ open: false });
-
-    };
 
     //Atualizar funcionário, tem que arrumar
     handleUpdate = (state) => {
@@ -162,7 +157,7 @@ class AddFuncionario extends React.Component{
                             <Input id="cpf" name="cpf"  onChange={this.handleCPFChange} placeholder="111.111.111-11" type="text" label="CPF" s={12} ><Icon small>assignment_ind</Icon></Input>
                             <Input id="senha" name="senha" onChange={this.handleSenhaChange} placeholder="123mudar" type="password" label="Senha" s={12} ><Icon small>lock</Icon></Input>
                         <Col s={12} m={12}>
-                        <Button onClick={this.handleClickOpen} className="btn waves-effect waves-light btn-small" type="submit" name="action">
+                        <Button onClick={this.handleClickOpen} className="blue darken-2 btn-small" type="submit" name="action">
                             <i className="material-icons">add</i>
                         </Button>
                          </Col>

@@ -49,12 +49,14 @@ class Funcionario extends React.Component {
     this.setState({funcionarios: newData}); 
   } 
 
+  // deletar uma tarefa
   deleteClick = (id) => {
     const url = '/api/colaboradores';
     axios.delete(`${url}/${id}`);
     return this.componentDidMount();
   }
 
+  // editar uma tarefa
   editClick = (id) =>{
     this.props.history.push(`/addfuncionario/${id}`)
   }
@@ -84,6 +86,7 @@ class Funcionario extends React.Component {
   }
 
   render() {
+    // se o estado estiver com erro
     if (this.state.hasError) {
       return (
         <Row>

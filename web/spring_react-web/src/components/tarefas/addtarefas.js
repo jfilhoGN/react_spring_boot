@@ -26,24 +26,23 @@ class AddTarefas extends React.Component {
             titulo: '',
             descricao: '',
             status: '',
-            hasTarefas: false
+            hasTarefas: false,
+            hasEdit: false,
+            open: false
         }
     }
 
     // get id e token do funcionario
     getFuncionario = () => {
-        const handleStorage = localStorage.getItem('data');
+        const handleStorage = sessionStorage.getItem('data');
         return JSON.parse(handleStorage);
     }
 
     // Adicionar Tarefa
     handleTituloTarefa = event => {this.setState({titulo: event.target.value})};
     handleDescricaoTarefa = event => {this.setState({descricao: event.target.value})};
-    handleStatusTarefa = event => {
-        console.log(event.value)
-        this.setState({status: event.value})};
+    handleStatusTarefa = event => {this.setState({status: event.value})};
     
-    //falta terminar a adicão de tarefas, pegar a url correta
     handleSubmitTarefa = event =>{
         event.preventDefault();
         const {id, token} = this.getFuncionario();
@@ -60,16 +59,83 @@ class AddTarefas extends React.Component {
             }  
         })
         .then(res => {
-            //this.setState({hasTarefas: true});
+            this.setState({hasTarefas: true});
             console.log(res);
             console.log(res.data)
         })
         .catch(function (error) {
         })
     }
-    
+
+
+    componentDidMount() {
+        const { match: { params } } = this.props;
+        const {id, token} = this.getFuncionario();
+        const url = '/api/tarefas';
+        if (params.tarefaId) {
+            axios.get(`${url}/${params.tarefaId}`,{
+                headers:{
+                    'id':id,
+                    'token':token
+                }
+            })
+            .then(({ data: tarefa }) => {
+              console.log(tarefa)
+            this.setState({ titulo:tarefa.titulo, descricao:tarefa.descricao, status:tarefa.status, hasEdit:true});
+          });
+        }
+        
+    }
+
+    //Atualizar Tarefa
+    handleUpdate = (state) => {
+        const {id, token} = this.getFuncionario();
+        const url = '/api/tarefas';
+        axios.put(`${url}/${state.id}`, { 
+            titulo: this.state.titulo, 
+            descricao: this.state.descricao,
+            colaboradorId: id,
+            status: this.state.status,
+            
+        },{
+            headers:{
+                'id':id,
+                'token':token
+            }  
+        })
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+        })
+    }
+
+
+    /* Rota para usuário visualizar tarefas cadastrados, click em não
+    no Dialog de adicionar tarefa */
+    handleReturnTarefa = () => {
+        this.props.history.goBack();
+    }
+
+    /* Seta o estado inicial para o funcionário cadastrar nova tarefa
+    clica em sim no Dialog de adicionar funcionário */
+    handleReturnAddTarefa = () =>{
+        this.setState({id: '',
+        nome: '',
+        email: '',
+        cpf: '',
+        senha: '',
+        hasTarefas: false,
+        hasEdit : false})
+    }
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+        
+    };
+
     render() {
-        if (this.state.hasFuncionario) {
+        if (this.state.hasTarefas) {
             return (
                 <div>
                     <Dialog
@@ -78,17 +144,17 @@ class AddTarefas extends React.Component {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                     >
-                    <DialogTitle id="alert-dialog-title">{"Funcionário Cadastrado"}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">{"Tarefa Cadastrada"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Deseja cadastrar novo funcionário?
+                            Deseja cadastrar nova tarefa?
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleReturnAddFuncionario} color="primary">
+                        <Button onClick={this.handleReturnAddTarefa} color="primary">
                         Sim
                         </Button>
-                        <Button onClick={this.handleReturnFuncionario} color="primary" autoFocus>
+                        <Button onClick={this.handleReturnTarefa} color="primary" autoFocus>
                         Não
                         </Button>
                     </DialogActions>
@@ -96,18 +162,37 @@ class AddTarefas extends React.Component {
                 </div>
             )
         }
+        if(this.state.hasEdit){
+            return (
+                <Card>
+                    <Row>
+                        <form className="col s12" onSubmit={this.handleSubmitTarefa}>
+                            <Input id="titulo" name="titulo" value={this.state.titulo} onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
+                            <Input id="descricao" name="descricao" value={this.state.descricao}  onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
+                            <Col s={12} m={12}>
+                            <Select placeholder="status da tarefa" value={this.state.status} options={status} onChange={this.handleStatusTarefa} s={12}><Icon small>toys</Icon></Select> 
+                            <br></br>
+                        </Col>
+                        <Button onClick={this.handleUpdate} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
+                            <i className="material-icons">update</i>
+                        </Button>
+                        </form>  
+                    </Row>
+                </Card>
+            );
+        }
         //titulo, descrição, status (dropdow)
         return (
             <Card>
                 <Row>
                     <form className="col s12" onSubmit={this.handleSubmitTarefa}>
                         <Input id="titulo" name="titulo"  onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
-                        <Input id="descricao" name="descricao"  onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
+                        <Input id="descricao" name="descricao" onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
                         <Col s={12} m={12}>
-                        <Select placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}><Icon small>code</Icon></Select> 
+                        <Select placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}><Icon small>toys</Icon></Select> 
                         <br></br>
                     </Col>
-                    <Button onClick={this.handAddClick} className="btn waves-effect waves-light btn-small" type="submit" name="action">
+                    <Button onClick={this.handAddClick} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
                         <i className="material-icons">add</i>
                     </Button>
                     </form>  
