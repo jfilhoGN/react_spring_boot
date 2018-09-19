@@ -147,6 +147,7 @@ class Tarefas extends React.Component {
                 <i className="material-icons">edit</i>
               </button>
           </CollectionItem>
+
         )
     }
     render() {
@@ -165,7 +166,7 @@ class Tarefas extends React.Component {
           }
         return (
             <Row>
-            <Col m={8} s={12}>
+            <Col m={10} s={12}>
                 <Card>
                 <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
                     <i className="material-icons">add</i>
@@ -176,13 +177,20 @@ class Tarefas extends React.Component {
                     onChange={text => this.searchFilterFunction(text)}
                     placeholder="procurar tarefa" />
                 </form>
-                <Collection className="collection" header="Tarefas">
+                <Collection className="collection" header="Tarefas Fazer">
                     {this.state.tarefas.map(this.renderTarefas)}
                 </Collection>
                 </div>
+                <div>
+                    <Collection className="collection" header="Tarefas Fazendo">
+                    
+                    </Collection>
+                </div>
                 </Card>
             </Col>
-        </Row>
+            </Row>
+
+            
         );
     }
 }

@@ -3,12 +3,14 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./login.css";
 import axios from 'axios';
 
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       senha: "",
+      isAuth: false
     };
   }
 
@@ -27,9 +29,6 @@ class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    //realizar o método auth passando email e senha
-    //implementar método post
-    //console.log(this.state)
     axios.post("/api/colaboradores/auth", { 
       email:this.state.email, 
       senha:this.state.senha,
@@ -43,11 +42,12 @@ class Login extends React.Component {
       }
     })
     .catch((error) => {
+      this.errorAlert(error);
       if (error.response.status === 500){
-        window.confirm("Falha no Banco de Dados");
+        return window.confirm("Erro no banco de dados");
       }
       if (error.response.status === 401){
-        window.confirm("Usuário ou senha errado");
+        return window.confirm("Usuário ou senha não cadastrado");
       }
     })
   }
@@ -101,5 +101,6 @@ class Login extends React.Component {
     );
   }
 }
+
 
 export default Login;
