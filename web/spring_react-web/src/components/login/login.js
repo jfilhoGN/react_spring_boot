@@ -42,7 +42,6 @@ class Login extends React.Component {
       }
     })
     .catch((error) => {
-      this.errorAlert(error);
       if (error.response.status === 500){
         return window.confirm("Erro no banco de dados");
       }
@@ -67,24 +66,21 @@ class Login extends React.Component {
               autoFocus
               type="email"
               //value={this.state.email}
-              onChange={this.handleChangeEmail}
-            />
+              onChange={this.handleChangeEmail}/>
           </FormGroup>
           <FormGroup controlId="password" bsSize="large">
             <ControlLabel>Senha</ControlLabel>
             <FormControl
               //value={this.state.password}
               onChange={this.handleChangeSenha}
-              type="password"
-            />
+              type="password"/>
           </FormGroup>
           <Button
             className="blue darken-2"
             block
             bsSize="large"
             type="submit"
-            onClick={this.handleSubmit}
-          >
+            onClick={this.handleSubmit}>
             Login
           </Button>
           <br></br>
@@ -92,8 +88,7 @@ class Login extends React.Component {
             className="blue darken-2"
             bsSize="large"
             type="submit"
-            onClick={() => this.addClick()}
-          >
+            onClick={() => this.addClick()}>
             Criar Conta
           </Button>
         </form>

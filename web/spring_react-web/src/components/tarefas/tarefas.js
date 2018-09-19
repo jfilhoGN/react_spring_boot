@@ -30,7 +30,7 @@ class Tarefas extends React.Component {
     componentDidMount(){ 
         const url = '/api/tarefas/getAll';
         const {id, token} = this.getFuncionario();
-        axios.get(`${url}/${id}`,{
+        axios.get(url,{
                 headers:{
                     'id':id,
                     'token':token
@@ -59,7 +59,7 @@ class Tarefas extends React.Component {
     componentDidMountUpdate(){ 
         const url = '/api/tarefas/getAll';
         const {id, token} = this.getFuncionario();
-        axios.get(`${url}/${id}`,{
+        axios.get(url,{
                 headers:{
                     'id':id,
                     'token':token
@@ -114,21 +114,14 @@ class Tarefas extends React.Component {
       } 
 
     changeStatus = (status) =>{
-        console.log(status)
-        switch (status) {
-            case "TODO":  
-                return "Fazer";
-            case "DOING":
-                return "Fazendo";
-            case "CODE_REVIEW":
-                return "Code_Review";
-            case "TEST":
-                return "Em teste";
-            case "DONE":
-                return "Concluido";
-            default:
-                break;
-        } 
+        const labels = {
+            TODO: 'Fazer',
+            DOING: 'Fazendo',
+            CODE_REVIEW: 'Code Review',
+            TEST: 'Em teste',
+            DONE: 'Concluido'
+        };
+        return labels[status];
     }
 
     renderTarefas = (tarefa) => {
@@ -147,7 +140,6 @@ class Tarefas extends React.Component {
                 <i className="material-icons">edit</i>
               </button>
           </CollectionItem>
-
         )
     }
     render() {
@@ -165,32 +157,56 @@ class Tarefas extends React.Component {
             )
           }
         return (
-            <Row>
-            <Col m={10} s={12}>
-                <Card>
-                <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
-                    <i className="material-icons">add</i>
-                </Button>
-                <div>
-                <form>
-                    <input
-                    onChange={text => this.searchFilterFunction(text)}
-                    placeholder="procurar tarefa" />
-                </form>
-                <Collection className="collection" header="Tarefas Fazer">
-                    {this.state.tarefas.map(this.renderTarefas)}
-                </Collection>
-                </div>
-                <div>
-                    <Collection className="collection" header="Tarefas Fazendo">
-                    
-                    </Collection>
-                </div>
-                </Card>
-            </Col>
-            </Row>
+            <Card >
+                <Row>
+                    <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
+                        <i className="material-icons">add</i>
+                    </Button>
+                    <div>
+                        <form>
+                            <input
+                            onChange={text => this.searchFilterFunction(text)}
+                            placeholder="procurar tarefa..." />
+                        </form>
+                    </div>
 
-            
+                    <h3><center>Tarefas</center></h3>
+                    <Col m={3} s={2} className="blue darken-2">
+                    <p><b><center>Fazer</center></b></p>    
+                        <Collection className="collection">
+                            {this.state.tarefas.map(this.renderTarefas)}
+                        </Collection>
+                    </Col>
+                    
+                    <Col m={3} s={2}>
+                    <p><b><center>Fazendo</center></b></p> 
+                        <Collection className="collection">
+                           
+                        </Collection>
+                    </Col>
+
+                    <Col m={3} s={2}>
+                    <p><b><center>Code Review</center></b></p> 
+                        <Collection className="collection">
+                           
+                        </Collection>
+                    </Col>
+
+                    <Col m={3} s={2}>
+                    <p><b><center>Teste</center></b></p> 
+                        <Collection className="collection">
+                           
+                        </Collection>
+                    </Col>
+
+                    <Col className="green darken-2" m={3} s={2}>
+                    <p><b><center>Concluido</center></b></p> 
+                        <Collection className="collection">
+                           
+                        </Collection>
+                    </Col>
+                </Row>
+            </Card>
         );
     }
 }
