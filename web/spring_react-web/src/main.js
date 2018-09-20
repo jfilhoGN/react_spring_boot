@@ -15,6 +15,9 @@ import Funcionario from "./components/funcionario/funcionario";
 
 /* Camada que possui as rotas que serão seguidas */
 // <Route path='/funcionarios' component={Funcionario}/>
+// <Route path="/addfuncionario/:funcionarioId" component={AddFuncionario} />
+
+
 const Main = () => (
   <main>
     <Container>
@@ -22,7 +25,6 @@ const Main = () => (
         <Route exact path='/' component={Home}/>
         <Route path='/login' component={Login}/>
         <Route path='/addfuncionario' exact={true} component={AddFuncionario}/>
-        <Route path="/addfuncionario/:funcionarioId" component={AddFuncionario} />
         <Route path="/tarefas" component={Tarefas} />
         <Route path="/addtarefas" exact={true} component={AddTarefas}/>
         <Route path="/addtarefas/:tarefaId" component={AddTarefas}/>

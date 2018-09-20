@@ -10,13 +10,24 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
+/* 
+TODO
+- Apresentar tela fazendo, feito, teste 
+- Status da tarefa no update da tarefa 
+- modificar a senha -> feito, falta testar
+- rotas autenticadas
+- delete fazer refresh na tarefa 
+- update tarefa, fazer refresh
+*/
+
+
 const status = [
     { label: "Fazer", value: 1 },
     { label: "Fazendo", value: 2 },
     { label: "Code Review", value: 3 },
     { label: "Em Teste", value: 4 },
     { label: "Feito", value: 5 },
-  ];
+];
 
 class AddTarefas extends React.Component {
 
@@ -60,8 +71,8 @@ class AddTarefas extends React.Component {
         })
         .then(res => {
             this.setState({hasTarefas: true});
-            console.log(res);
-            console.log(res.data)
+            //console.log(res);
+            //console.log(res.data)
         })
         .catch(function (error) {
         })
@@ -80,23 +91,23 @@ class AddTarefas extends React.Component {
                 }
             })
             .then(({ data: tarefa }) => {
-              console.log(tarefa)
-            this.setState({ titulo:tarefa.titulo, descricao:tarefa.descricao, status:tarefa.status, hasEdit:true});
+              //console.log(tarefa)
+            this.setState({id:params.tarefaId, titulo:tarefa.titulo, descricao:tarefa.descricao, status:tarefa.status, hasEdit:true});
           });
         }
         
     }
 
+
     //Atualizar Tarefa
-    handleUpdate = (state) => {
+    handleUpdate = () => {
         const {id, token} = this.getFuncionario();
         const url = '/api/tarefas';
-        axios.put(`${url}/${state.id}`, { 
+        axios.put(url, {
+            id: this.state.id, 
             titulo: this.state.titulo, 
             descricao: this.state.descricao,
-            colaboradorId: id,
             status: this.state.status,
-            
         },{
             headers:{
                 'id':id,
@@ -108,6 +119,8 @@ class AddTarefas extends React.Component {
         })
         .catch(function (error) {
         })
+        
+        return this.props.history.push('/tarefas');
     }
 
 
@@ -166,11 +179,11 @@ class AddTarefas extends React.Component {
             return (
                 <Card>
                     <Row>
-                        <form className="col s12" onSubmit={this.handleSubmitTarefa}>
+                        <form className="col s12" >
                             <Input id="titulo" name="titulo" value={this.state.titulo} onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
                             <Input id="descricao" name="descricao" value={this.state.descricao}  onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
                             <Col s={12} m={12}>
-                            <Select placeholder="status da tarefa" value={this.state.status} options={status} onChange={this.handleStatusTarefa} s={12}><Icon small>toys</Icon></Select> 
+                            <Select placeholder="status da tarefa" value={this.state.status} options={status.value} onChange={this.handleStatusTarefa} s={12}>{this.state.value}</Select> 
                             <br></br>
                         </Col>
                         <Button onClick={this.handleUpdate} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
@@ -192,7 +205,7 @@ class AddTarefas extends React.Component {
                         <Select placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}><Icon small>toys</Icon></Select> 
                         <br></br>
                     </Col>
-                    <Button onClick={this.handAddClick} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
+                    <Button onClick={this.handleClickOpen} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
                         <i className="material-icons">add</i>
                     </Button>
                     </form>  

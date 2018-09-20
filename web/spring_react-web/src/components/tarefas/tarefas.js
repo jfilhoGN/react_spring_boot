@@ -28,7 +28,7 @@ class Tarefas extends React.Component {
 
     // listar todas as tarefas
     componentDidMount(){ 
-        const url = '/api/tarefas/getAll';
+        const url = '/api/tarefas';
         const {id, token} = this.getFuncionario();
         axios.get(url,{
                 headers:{
@@ -49,15 +49,14 @@ class Tarefas extends React.Component {
                         window.confirm("Falha no banco de dados");
                     }
                     if(error.response.status === 404){
-                    this.setState({ hasError: true , loading:false});
+                        this.setState({ hasError: true , loading:false});
                     }
                 } 
             });
     }
-
 
     componentDidMountUpdate(){ 
-        const url = '/api/tarefas/getAll';
+        const url = '/api/tarefas';
         const {id, token} = this.getFuncionario();
         axios.get(url,{
                 headers:{
@@ -78,16 +77,17 @@ class Tarefas extends React.Component {
                         window.confirm("Falha no banco de dados");
                     }
                     if(error.response.status === 404){
-                    this.setState({ hasError: true , loading:false});
+                        this.setState({ hasError: true , loading:false});
                     }
                 } 
             });
     }
+
 
     // excluir tarefa
     deleteClick = (idTarefa) => {
         const {id,token} = this.getFuncionario();
-        console.log(token);
+        //console.log(token);
         const url = '/api/tarefas';
         axios.delete(`${url}/${idTarefa}`,{
             headers:{
@@ -103,6 +103,7 @@ class Tarefas extends React.Component {
         this.props.history.push(`/addtarefas/${tarefaId}`)
     }
 
+
     // selecionar tarefas
     searchFilterFunction = text => {
         const newData = this.arrayholder.filter(item => {
@@ -115,34 +116,37 @@ class Tarefas extends React.Component {
 
     changeStatus = (status) =>{
         const labels = {
-            TODO: 'Fazer',
-            DOING: 'Fazendo',
-            CODE_REVIEW: 'Code Review',
-            TEST: 'Em teste',
-            DONE: 'Concluido'
+            1: 'Fazer',
+            2: 'Fazendo',
+            3: 'Code Review',
+            4: 'Em teste',
+            5: 'Concluido'
         };
         return labels[status];
     }
 
     renderTarefas = (tarefa) => {
-        return (
-          <CollectionItem key={tarefa.id} className="collection-item" >
-              <Icon small>title</Icon> {tarefa.titulo}
-              <p>
-              <Icon small>description</Icon> {tarefa.descricao}
-              <br></br>
-              <Icon small>code</Icon> {this.changeStatus(tarefa.status)}
-              </p>
-              <button onClick={() => this.deleteClick(tarefa.id)} className="btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionDelete">
-                <i className="material-icons">delete</i>
-              </button>
-              <button onClick={() => this.editClick(tarefa.id)} className="btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionEdit">
-                <i className="material-icons">edit</i>
-              </button>
-          </CollectionItem>
-        )
+            return (
+                <CollectionItem key={tarefa.id} className="collection-item" >
+                    <Icon small>title</Icon> {tarefa.titulo}
+                    <p>
+                    <Icon small>description</Icon> {tarefa.descricao}
+                    <br></br>
+                    <Icon small>code</Icon> {this.changeStatus(tarefa.status)}
+                    </p>
+                    <button onClick={() => this.deleteClick(tarefa.id)} className="btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionDelete">
+                      <i className="material-icons">delete</i>
+                    </button>
+                    <button onClick={() => this.editClick(tarefa.id)} className="btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionEdit">
+                      <i className="material-icons">edit</i>
+                    </button>
+                </CollectionItem>
+          )
+           
     }
+
     render() {
+
         if (this.state.hasError) {
             return (
               <Row>
@@ -172,39 +176,12 @@ class Tarefas extends React.Component {
 
                     <h3><center>Tarefas</center></h3>
                     <Col m={3} s={2} className="blue darken-2">
-                    <p><b><center>Fazer</center></b></p>    
+                    <center><p><b>Fazer</b></p></center>    
                         <Collection className="collection">
                             {this.state.tarefas.map(this.renderTarefas)}
                         </Collection>
                     </Col>
                     
-                    <Col m={3} s={2}>
-                    <p><b><center>Fazendo</center></b></p> 
-                        <Collection className="collection">
-                           
-                        </Collection>
-                    </Col>
-
-                    <Col m={3} s={2}>
-                    <p><b><center>Code Review</center></b></p> 
-                        <Collection className="collection">
-                           
-                        </Collection>
-                    </Col>
-
-                    <Col m={3} s={2}>
-                    <p><b><center>Teste</center></b></p> 
-                        <Collection className="collection">
-                           
-                        </Collection>
-                    </Col>
-
-                    <Col className="green darken-2" m={3} s={2}>
-                    <p><b><center>Concluido</center></b></p> 
-                        <Collection className="collection">
-                           
-                        </Collection>
-                    </Col>
                 </Row>
             </Card>
         );

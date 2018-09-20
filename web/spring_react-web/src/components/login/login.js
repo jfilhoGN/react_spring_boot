@@ -3,21 +3,24 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./login.css";
 import axios from 'axios';
 
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       senha: "",
-      isAuth: false
+      isAuth: false,
+      redirectToPreviousRoute: false
     };
   }
 
   acceptFuncionario = (id, token) =>{
     const json = {id:id, token:token};
     sessionStorage.setItem("data", JSON.stringify(json));
-    this.props.history.push('/tarefas');
+    
+    this.props.history.push('/tarefas')
+    
+    
   }
 
   handleChangeEmail = event => {
@@ -58,8 +61,8 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
+      <div className="login-page">
+        <form onSubmit={this.handleSubmit} className="formLogin">
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
