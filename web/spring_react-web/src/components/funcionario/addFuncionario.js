@@ -42,7 +42,10 @@ class AddFuncionario extends React.Component{
             console.log(res);
             console.log(res.data)
         })
-        .catch(function (error) {
+        .catch(error => {
+            if(error.response.status === 500){
+                window.confirm("Falha no banco de dados");
+            }
         })
     }
 

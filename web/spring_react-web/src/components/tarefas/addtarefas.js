@@ -14,7 +14,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 const status = [
     { label: "Fazer", value: 1 },
     { label: "Fazendo", value: 2 },
-    { label: "Code Review", value: 3 },
     { label: "Em Teste", value: 4 },
     { label: "Feito", value: 5 },
 ];

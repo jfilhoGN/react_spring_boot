@@ -12,7 +12,10 @@ class Tarefas extends React.Component {
             tarefas: [],
             hasError: false
         }
+        this.arrayTodo = [];
         this.arrayholder = [];
+        this.arrayDoing = [];
+        this.arrayTest = [];
     }
 
     // criar adicionar tarefas
@@ -99,11 +102,27 @@ class Tarefas extends React.Component {
         const labels = {
             1: 'Fazer',
             2: 'Fazendo',
-            3: 'Code Review',
             4: 'Em teste',
             5: 'Concluido'
         };
         return labels[status];
+    }
+
+    renderTarefaStatus = (tarefa) =>{
+        //console.log(tarefa)
+        if (tarefa.status===1) {
+            this.arrayTodo = tarefa;
+            console.log(this.arrayTodo);
+            return this.renderTarefas(this.arrayTodo);
+        }
+        if (tarefa.status===2) {
+            this.arrayDoing = tarefa;
+            return this.renderTarefas(this.arrayDoing);
+        }
+        if (tarefa.status===4) {
+            this.arrayTest = tarefa;
+            return this.renderTarefas(this.arrayTest);
+        }
     }
 
     renderTarefas = (tarefa) => {
@@ -124,8 +143,7 @@ class Tarefas extends React.Component {
                       <i className="material-icons">edit</i>
                     </button>
                 </CollectionItem>
-          )
-            
+        )  
            
     }
 
@@ -158,13 +176,20 @@ class Tarefas extends React.Component {
                     </div>
 
                     <h3><center>Tarefas</center></h3>
-                    <Col m={3} s={3} className="blue darken-2">
+                    <Col m={3} s={3} className="blue lighten-2">
                     <center><p><b>Fazer</b></p></center>    
                         <Collection className="collection">
-                            {this.state.tarefas.map(this.renderTarefas)}
+                            {this.state.tarefas.map(this.renderTarefaStatus)}
                         </Collection>
                     </Col>
 
+                    <Col m={3} s={3} className="blue lighten-2">
+                    <center><p><b>Fazendo</b></p></center>    
+                        <Collection className="collection">
+                            {this.state.tarefas.map(this.renderTarefaStatus)}
+                        </Collection>
+                    </Col>
+                    
                 </Row>
             </Card>
         );

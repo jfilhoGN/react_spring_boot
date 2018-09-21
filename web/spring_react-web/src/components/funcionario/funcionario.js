@@ -120,7 +120,6 @@ class Funcionario extends Component {
                     <h4><center>Tarefas</center></h4>
                     <center><p><b>Para Realizar: </b> {this.state.TODO} </p></center>
                     <center><p><b>Realizando: </b> {this.state.DOING} </p></center>
-                    <center><p><b>em Code Review: </b> {this.state.CODE}</p></center>
                     <center><p><b>em Teste: </b> {this.state.TEST}</p></center>
                     <center><p><b>Concluido: </b> {this.state.DONE}</p></center>
                 </Row>
