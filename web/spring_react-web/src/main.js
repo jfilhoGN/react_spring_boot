@@ -12,6 +12,7 @@ import Login from "./components/login/login";
 import Tarefas from "./components/tarefas/tarefas";
 import AddTarefas from "./components/tarefas/addtarefas";
 import Funcionario from "./components/funcionario/funcionario";
+import ChangeSenhaFuncionario from "./components/funcionario/changeSenhaFuncionario";
 
 /* Camada que possui as rotas que serão seguidas */
 // <Route path='/funcionarios' component={Funcionario}/>
@@ -28,7 +29,8 @@ const Main = () => (
         <Route path="/tarefas" component={Tarefas} />
         <Route path="/addtarefas" exact={true} component={AddTarefas}/>
         <Route path="/addtarefas/:tarefaId" component={AddTarefas}/>
-        <Route path="/account" component={Funcionario} />
+        <Route path="/account" exact={true} component={Funcionario} />
+        <Route path="/account/changesenha" component={ChangeSenhaFuncionario} />
     </Switch>
     </Container>
   </main>  

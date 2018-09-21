@@ -10,16 +10,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-/* 
-TODO
-- Apresentar tela fazendo, feito, teste 
-- Status da tarefa no update da tarefa 
-- modificar a senha -> feito, falta testar
-- rotas autenticadas
-- delete fazer refresh na tarefa 
-- update tarefa, fazer refresh
-*/
-
 
 const status = [
     { label: "Fazer", value: 1 },
@@ -80,6 +70,10 @@ class AddTarefas extends React.Component {
 
 
     componentDidMount() {
+        this.getDados();
+    }
+
+    getDados = () =>{
         const { match: { params } } = this.props;
         const {id, token} = this.getFuncionario();
         const url = '/api/tarefas';
@@ -95,7 +89,6 @@ class AddTarefas extends React.Component {
             this.setState({id:params.tarefaId, titulo:tarefa.titulo, descricao:tarefa.descricao, status:tarefa.status, hasEdit:true});
           });
         }
-        
     }
 
 
@@ -115,12 +108,11 @@ class AddTarefas extends React.Component {
             }  
         })
         .then(function (response) {
-            console.log(response)
+            return this.getDados();
+            //console.log(response)
         })
         .catch(function (error) {
         })
-        
-        return this.props.history.push('/tarefas');
     }
 
 
@@ -183,7 +175,7 @@ class AddTarefas extends React.Component {
                             <Input id="titulo" name="titulo" value={this.state.titulo} onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
                             <Input id="descricao" name="descricao" value={this.state.descricao}  onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
                             <Col s={12} m={12}>
-                            <Select placeholder="status da tarefa" value={this.state.status} options={status.value} onChange={this.handleStatusTarefa} s={12}>{this.state.value}</Select> 
+                            <Select placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                             <br></br>
                         </Col>
                         <Button onClick={this.handleUpdate} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">

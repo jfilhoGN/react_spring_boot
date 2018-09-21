@@ -26,36 +26,13 @@ class Tarefas extends React.Component {
         return JSON.parse(handleStorage);
     }
 
-    // listar todas as tarefas
+    
     componentDidMount(){ 
-        const url = '/api/tarefas';
-        const {id, token} = this.getFuncionario();
-        axios.get(url,{
-                headers:{
-                    'id':id,
-                    'token':token
-                }
-            })
-            .then(response => { 
-                this.setState({
-                    tarefas: response.data,
-                    //isLoading: true
-                });
-                this.arrayholder = response.data;
-            })
-            .catch(error => {
-                if (error.response) {
-                    if(error.response.status === 500){
-                        window.confirm("Falha no banco de dados");
-                    }
-                    if(error.response.status === 404){
-                        this.setState({ hasError: true , loading:false});
-                    }
-                } 
-            });
+        this.getTarefas();
     }
 
-    componentDidMountUpdate(){ 
+    // listar todas as tarefas
+    getTarefas = () =>{
         const url = '/api/tarefas';
         const {id, token} = this.getFuncionario();
         axios.get(url,{
@@ -81,6 +58,7 @@ class Tarefas extends React.Component {
                     }
                 } 
             });
+
     }
 
 
@@ -95,7 +73,10 @@ class Tarefas extends React.Component {
                 'token':token
             }
         })
-        return this.componentDidMountUpdate();
+        .then(response => { 
+            return this.getTarefas();
+        })
+        // dar o refresh
     }
 
     // editar tarefa
@@ -142,11 +123,11 @@ class Tarefas extends React.Component {
                     </button>
                 </CollectionItem>
           )
+            
            
     }
 
     render() {
-
         if (this.state.hasError) {
             return (
               <Row>
@@ -181,7 +162,7 @@ class Tarefas extends React.Component {
                             {this.state.tarefas.map(this.renderTarefas)}
                         </Collection>
                     </Col>
-                    
+
                 </Row>
             </Card>
         );
