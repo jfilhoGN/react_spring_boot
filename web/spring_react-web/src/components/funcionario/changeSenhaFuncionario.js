@@ -98,10 +98,10 @@ class ChangeSenhaFuncionario extends Component {
                     <Input id="ioldSenha" name="ioldSenha" onChange={this.antigSenha} type="text" label="Senha Antiga" s={12}/>
                     <Input id="inewSenha" name="inewSenha" onChange={this.novaSenha} type="text" label="Nova Senha" s={12}/>
                     <Input id="iconfirmSenha" name="iconfirmSenha" onChange={this.confirmSenha} type="text" label="Confirmar nova senha" s={12}/>
-                    <Button onClick={this.submitSenha} className="btn waves-effect waves-light btn-small blue darken-2" type="submit">
+                    <Button onClick={this.submitSenha} className="btn button-espaco waves-effect waves-light btn-small blue darken-2" type="submit">
                     <i className="material-icons">update</i>
                     </Button>
-                    <Button onClick={this.cancelChangeSenha} className="btn waves-effect waves-light btn-small blue darken-2" type="submit">
+                    <Button onClick={this.cancelChangeSenha} className="btn button-espaco waves-effect waves-light btn-small blue darken-2" type="submit">
                     <i className="material-icons">close</i>
                     </Button>
                 </form>

@@ -178,7 +178,7 @@ class AddTarefas extends React.Component {
                             <Select placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                             <br></br>
                         </Col>
-                        <Button onClick={this.handleUpdate} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
+                        <Button onClick={this.handleUpdate} className="btn-small blue darken-2" type="submit" name="action">
                             <i className="material-icons">update</i>
                         </Button>
                         </form>  
@@ -194,10 +194,10 @@ class AddTarefas extends React.Component {
                         <Input id="titulo" name="titulo"  onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
                         <Input id="descricao" name="descricao" onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
                         <Col s={12} m={12}>
-                        <Select placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}><Icon small>toys</Icon></Select> 
+                        <Select placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                         <br></br>
                     </Col>
-                    <Button onClick={this.handleClickOpen} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
+                    <Button onClick={this.handleClickOpen} className="btn-espaco btn-small blue darken-2" type="submit" name="action">
                         <i className="material-icons">add</i>
                     </Button>
                     </form>  

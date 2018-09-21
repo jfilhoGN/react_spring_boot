@@ -109,16 +109,18 @@ class Tarefas extends React.Component {
     renderTarefas = (tarefa) => {
             return (
                 <CollectionItem key={tarefa.id} className="collection-item" >
+                    <Icon small>label</Icon> {tarefa.codigo} 
+                    <br/>
                     <Icon small>title</Icon> {tarefa.titulo}
                     <p>
                     <Icon small>description</Icon> {tarefa.descricao}
                     <br></br>
                     <Icon small>code</Icon> {this.changeStatus(tarefa.status)}
                     </p>
-                    <button onClick={() => this.deleteClick(tarefa.id)} className="btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionDelete">
+                    <button onClick={() => this.deleteClick(tarefa.id)} className="button-espaco btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionDelete">
                       <i className="material-icons">delete</i>
                     </button>
-                    <button onClick={() => this.editClick(tarefa.id)} className="btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionEdit">
+                    <button onClick={() => this.editClick(tarefa.id)} className="btn button-espaco waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionEdit">
                       <i className="material-icons">edit</i>
                     </button>
                 </CollectionItem>
@@ -156,7 +158,7 @@ class Tarefas extends React.Component {
                     </div>
 
                     <h3><center>Tarefas</center></h3>
-                    <Col m={3} s={2} className="blue darken-2">
+                    <Col m={3} s={3} className="blue darken-2">
                     <center><p><b>Fazer</b></p></center>    
                         <Collection className="collection">
                             {this.state.tarefas.map(this.renderTarefas)}

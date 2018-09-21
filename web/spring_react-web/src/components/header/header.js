@@ -12,7 +12,7 @@ const Header = () => (
       <Navbar className="blue darken-2">
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink title="login" to='/login'><Icon>assignment_ind</Icon></NavLink></li>
-        <li><NavLink title="tarefas" to='/tarefas'><Icon>assessment</Icon></NavLink></li>
+        <li><NavLink title="tarefas" to='/tarefas'><Icon>dashboard</Icon></NavLink></li>
         <li><NavLink title="minha conta" to='/account'><Icon>account_circle</Icon></NavLink></li>
       </Navbar>
     </Row>

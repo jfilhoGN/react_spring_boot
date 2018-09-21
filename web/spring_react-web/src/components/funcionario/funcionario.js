@@ -109,7 +109,7 @@ class Funcionario extends Component {
                         <i className="material-icons">update</i>
                     </Button>
 
-                    <Button onClick={() => this.buttonChangeSenha()} title="mudar senha" className="blue darken-2 btn-small" type="submit" name="action">
+                    <Button onClick={() => this.buttonChangeSenha()} title="mudar senha" className="button-espaco blue darken-2 btn-small" type="submit" name="action">
                         <i className="material-icons">lock_open</i>
                     </Button>
 
