@@ -29,7 +29,13 @@ class Funcionario extends Component {
     // get id e token do funcionario
     getFuncionario = () => {
         const handleStorage = sessionStorage.getItem('data');
-        return JSON.parse(handleStorage);
+        if(!handleStorage){
+            window.confirm("Você não está logado");
+            return this.props.history.goBack();
+        }
+        else{
+            return JSON.parse(handleStorage);
+        }
     }
 
     componentDidMount() {
@@ -84,12 +90,12 @@ class Funcionario extends Component {
                 'token':token
             }  
         })
-        .then(function (response) {
+        .then(response => {
             console.log(response)
         })
         .catch(function (error) {
         })
-        return this.props.history.push('/account');
+        return this.props.history.push('/tarefas');
     }
 
     buttonChangeSenha = () =>{
@@ -105,11 +111,11 @@ class Funcionario extends Component {
                         <Input id="nome" name="nome" placeholder="teste" value={this.state.nome} onChange={this.changeNome} type="text" label="Nome" s={12}><Icon small>person</Icon></Input>
                         <Input id="email" name="email" placeholder="teste" value={this.state.email} onChange={this.changeEmail} type="text" label="Email" s={12} ><Icon small>email</Icon></Input>
                         <Input id="cpf" name="cpf" placeholder="teste" value={this.state.cpf} type="text" onChange={this.changeCpf} label="CPF" s={12} ><Icon small>assignment_ind</Icon></Input>
-                    <Button onClick={this.handleUpdate} className="blue darken-2 btn-small" type="submit" name="action">
+                    <Button onClick={this.handleUpdate} className="grey darken-3 btn-small" type="submit" name="action">
                         <i className="material-icons">update</i>
                     </Button>
 
-                    <Button onClick={() => this.buttonChangeSenha()} title="mudar senha" className="button-espaco blue darken-2 btn-small" type="submit" name="action">
+                    <Button onClick={() => this.buttonChangeSenha()} title="mudar senha" className="button-espaco grey darken-3 btn-small" type="submit" name="action">
                         <i className="material-icons">lock_open</i>
                     </Button>
 

@@ -6,7 +6,7 @@ body {
 
 
 body {
-  background-color: #eee;
+  background-color: #424242;
 }
 
 .button-espaco{
@@ -15,4 +15,20 @@ body {
 
 .card {
   padding: 1px;
+}
+
+.card-tarefas{
+  background-color: #424242;
+}
+
+.h3-tarefas{
+  background: #424242;
+  font-family: monospace;
+  color: white;
+}
+
+.h4-tarefas{
+  background: #424242;
+  font-family: monospace;
+  color: white;
 }

@@ -10,12 +10,15 @@ class Tarefas extends React.Component {
         super();
         this.state = {
             tarefas: [],
-            hasError: false
+            hasError: false,
+            tarefasTodo: [],
+            tarefasDoing: [],
+            tarefasTest: [],
+            tarefasDone: []
+            
         }
-        this.arrayTodo = [];
         this.arrayholder = [];
-        this.arrayDoing = [];
-        this.arrayTest = [];
+        //this.arrayTodo = [];
     }
 
     // criar adicionar tarefas
@@ -26,18 +29,25 @@ class Tarefas extends React.Component {
     // get id e token do funcionario
     getFuncionario = () => {
         const handleStorage = sessionStorage.getItem('data');
-        return JSON.parse(handleStorage);
+        if(!handleStorage){
+            window.confirm("Você não está logado");
+            return this.props.history.goBack();
+        }
+        else{
+            return JSON.parse(handleStorage);
+        }
     }
 
-    
     componentDidMount(){ 
         this.getTarefas();
     }
+
 
     // listar todas as tarefas
     getTarefas = () =>{
         const url = '/api/tarefas';
         const {id, token} = this.getFuncionario();
+        
         axios.get(url,{
                 headers:{
                     'id':id,
@@ -45,11 +55,16 @@ class Tarefas extends React.Component {
                 }
             })
             .then(response => { 
+                const tarefas = response.data
                 this.setState({
                     tarefas: response.data,
-                    //isLoading: true
+                    tarefasTodo: tarefas.filter(tarefa => tarefa.status === 1),
+                    tarefasDoing: tarefas.filter(tarefa => tarefa.status===2),
+                    tarefasTest: tarefas.filter(tarefa => tarefa.status===4),
+                    tarefasDone: tarefas.filter(tarefa => tarefa.status===5),
                 });
                 this.arrayholder = response.data;
+                
             })
             .catch(error => {
                 if (error.response) {
@@ -60,8 +75,7 @@ class Tarefas extends React.Component {
                         this.setState({ hasError: true , loading:false});
                     }
                 } 
-            });
-
+        });
     }
 
 
@@ -95,7 +109,7 @@ class Tarefas extends React.Component {
           const textData = text.target.value.toUpperCase();
           return itemData.indexOf(textData) > -1;
         });
-        this.setState({tarefas: newData}); 
+        this.setState({tarefasTodo: newData}); 
       } 
 
     changeStatus = (status) =>{
@@ -108,41 +122,22 @@ class Tarefas extends React.Component {
         return labels[status];
     }
 
-    renderTarefaStatus = (tarefa) =>{
-        //console.log(tarefa)
-        if (tarefa.status===1) {
-            this.arrayTodo = tarefa;
-            console.log(this.arrayTodo);
-            return this.renderTarefas(this.arrayTodo);
-        }
-        if (tarefa.status===2) {
-            this.arrayDoing = tarefa;
-            return this.renderTarefas(this.arrayDoing);
-        }
-        if (tarefa.status===4) {
-            this.arrayTest = tarefa;
-            return this.renderTarefas(this.arrayTest);
-        }
-    }
-
     renderTarefas = (tarefa) => {
-            return (
-                <CollectionItem key={tarefa.id} className="collection-item" >
-                    <Icon small>label</Icon> {tarefa.codigo} 
-                    <br/>
-                    <Icon small>title</Icon> {tarefa.titulo}
-                    <p>
-                    <Icon small>description</Icon> {tarefa.descricao}
-                    <br></br>
-                    <Icon small>code</Icon> {this.changeStatus(tarefa.status)}
-                    </p>
-                    <button onClick={() => this.deleteClick(tarefa.id)} className="button-espaco btn waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionDelete">
-                      <i className="material-icons">delete</i>
-                    </button>
-                    <button onClick={() => this.editClick(tarefa.id)} className="btn button-espaco waves-effect waves-light btn-small blue darken-2 btn-small" type="submit" name="actionEdit">
-                      <i className="material-icons">edit</i>
-                    </button>
-                </CollectionItem>
+        return (
+            <CollectionItem key={tarefa.id} className="collection-item" >
+                <Icon small>title</Icon> {tarefa.titulo}
+                <p>
+                <Icon small>description</Icon> {tarefa.descricao}
+                <br></br>
+                <Icon small>code</Icon> {this.changeStatus(tarefa.status)}
+                </p>
+                <button onClick={() => this.deleteClick(tarefa.id)} className="button-espaco btn waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionDelete">
+                    <i className="material-icons">delete</i>
+                </button>
+                <button onClick={() => this.editClick(tarefa.id)} className="btn button-espaco waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionEdit">
+                    <i className="material-icons">edit</i>
+                </button>
+            </CollectionItem>
         )  
            
     }
@@ -152,7 +147,7 @@ class Tarefas extends React.Component {
             return (
               <Row>
               <Card>
-              <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small" type="submit" name="action">
+              <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small grey lighten-2" type="submit" name="action">
                     <i className="material-icons">add</i>
                 </Button>
                 <p></p>
@@ -162,9 +157,9 @@ class Tarefas extends React.Component {
             )
           }
         return (
-            <Card >
+            <Card className="card-tarefas">
                 <Row>
-                    <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small blue darken-2" type="submit" name="action">
+                    <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small grey" type="submit" name="action">
                         <i className="material-icons">add</i>
                     </Button>
                     <div>
@@ -175,18 +170,32 @@ class Tarefas extends React.Component {
                         </form>
                     </div>
 
-                    <h3><center>Tarefas</center></h3>
-                    <Col m={3} s={3} className="blue lighten-2">
-                    <center><p><b>Fazer</b></p></center>    
+                    <h3 className="h3-tarefas"><center>Tarefas</center></h3>
+                    <Col m={3} s={3} className="grey darken-3">
+                    <center><h4 className="h4-tarefas">Fazer</h4></center>    
                         <Collection className="collection">
-                            {this.state.tarefas.map(this.renderTarefaStatus)}
+                            {this.state.tarefasTodo.map(this.renderTarefas)}
                         </Collection>
                     </Col>
 
-                    <Col m={3} s={3} className="blue lighten-2">
-                    <center><p><b>Fazendo</b></p></center>    
+                    <Col m={3} s={3} className="grey darken-3">
+                    <center><h4 className="h4-tarefas">Fazendo</h4></center>    
                         <Collection className="collection">
-                            {this.state.tarefas.map(this.renderTarefaStatus)}
+                            {this.state.tarefasDoing.map(this.renderTarefas)}
+                        </Collection>
+                    </Col>
+
+                    <Col m={3} s={3} className="grey darken-3">
+                    <center><h4 className="h4-tarefas">Teste</h4></center>    
+                        <Collection className="collection">
+                            {this.state.tarefasTest.map(this.renderTarefas)}
+                        </Collection>
+                    </Col>
+
+                    <Col m={3} s={3} className="grey darken-3">
+                    <center><h4 className="h4-tarefas">Concluido</h4></center>    
+                        <Collection className="collection">
+                            {this.state.tarefasDone.map(this.renderTarefas)}
                         </Collection>
                     </Col>
                     

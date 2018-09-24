@@ -35,7 +35,13 @@ class AddTarefas extends React.Component {
     // get id e token do funcionario
     getFuncionario = () => {
         const handleStorage = sessionStorage.getItem('data');
-        return JSON.parse(handleStorage);
+        if(!handleStorage){
+            window.confirm("Você não está logado");
+            return this.props.history.goBack();
+        }
+        else{
+            return JSON.parse(handleStorage);
+        }
     }
 
     // Adicionar Tarefa
@@ -106,11 +112,11 @@ class AddTarefas extends React.Component {
                 'token':token
             }  
         })
-        .then(function (response) {
-            return this.getDados();
+        .then(response => {
+             return this.props.history.goBack();
             //console.log(response)
         })
-        .catch(function (error) {
+        .catch(error => {
         })
     }
 
@@ -177,7 +183,7 @@ class AddTarefas extends React.Component {
                             <Select placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                             <br></br>
                         </Col>
-                        <Button onClick={this.handleUpdate} className="btn-small blue darken-2" type="submit" name="action">
+                        <Button onClick={this.handleUpdate} className="btn-small grey darken-3">
                             <i className="material-icons">update</i>
                         </Button>
                         </form>  
@@ -196,7 +202,7 @@ class AddTarefas extends React.Component {
                         <Select placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                         <br></br>
                     </Col>
-                    <Button onClick={this.handleClickOpen} className="btn-espaco btn-small blue darken-2" type="submit" name="action">
+                    <Button onClick={this.handleClickOpen} className="btn-espaco btn-small grey darken-3" type="submit" name="action">
                         <i className="material-icons">add</i>
                     </Button>
                     </form>  

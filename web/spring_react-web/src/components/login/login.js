@@ -17,9 +17,8 @@ class Login extends React.Component {
   acceptFuncionario = (id, token) =>{
     const json = {id:id, token:token};
     sessionStorage.setItem("data", JSON.stringify(json));
-    
+    this.props.onLogin()
     this.props.history.push('/tarefas')
-    
     
   }
 
@@ -79,7 +78,6 @@ class Login extends React.Component {
               type="password"/>
           </FormGroup>
           <Button
-            className="blue darken-2"
             block
             bsSize="large"
             type="submit"
@@ -88,7 +86,6 @@ class Login extends React.Component {
           </Button>
           <br></br>
           <Button
-            className="blue darken-2"
             bsSize="large"
             type="submit"
             onClick={() => this.addClick()}>
