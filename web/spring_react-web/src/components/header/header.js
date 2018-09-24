@@ -1,5 +1,4 @@
 import React from "react";
-
 import {Navbar, Row, Icon} from 'react-materialize';
 // Importando o Component NavLink da nossa lib de rotas
 import { NavLink } from 'react-router-dom'
@@ -15,6 +14,7 @@ const Header = (props) => {
         {
           logado ? (
             <div> 
+              <li><NavLink to='/'>Home</NavLink></li>
               <li><NavLink title="tarefas" to='/tarefas'><Icon>dashboard</Icon></NavLink></li>
               <li><NavLink title="minha conta" to='/account'><Icon>account_circle</Icon></NavLink></li>
               <li><NavLink to='/' onClick={onLogout}>Logout</NavLink></li>

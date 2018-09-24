@@ -131,10 +131,10 @@ class Tarefas extends React.Component {
                 <br></br>
                 <Icon small>code</Icon> {this.changeStatus(tarefa.status)}
                 </p>
-                <button onClick={() => this.deleteClick(tarefa.id)} className="button-espaco btn waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionDelete">
+                <button onClick={() => this.deleteClick(tarefa.id)} title="deletar tarefa" className="button-espaco btn waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionDelete">
                     <i className="material-icons">delete</i>
                 </button>
-                <button onClick={() => this.editClick(tarefa.id)} className="btn button-espaco waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionEdit">
+                <button onClick={() => this.editClick(tarefa.id)} title="editar tarefa" className="btn button-espaco waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionEdit">
                     <i className="material-icons">edit</i>
                 </button>
             </CollectionItem>
@@ -147,7 +147,7 @@ class Tarefas extends React.Component {
             return (
               <Row>
               <Card>
-              <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small grey lighten-2" type="submit" name="action">
+              <Button onClick={() => this.clickAddTarefa()} title="adicionar tarefa" className="btn waves-effect waves-light btn-small grey lighten-2" type="submit" name="action">
                     <i className="material-icons">add</i>
                 </Button>
                 <p></p>
@@ -159,7 +159,7 @@ class Tarefas extends React.Component {
         return (
             <Card className="card-tarefas">
                 <Row>
-                    <Button onClick={() => this.clickAddTarefa()} className="btn waves-effect waves-light btn-small grey" type="submit" name="action">
+                    <Button onClick={() => this.clickAddTarefa()} title="adicionar tarefa" className="btn waves-effect waves-light btn-small grey" type="submit" name="action">
                         <i className="material-icons">add</i>
                     </Button>
                     <div>
@@ -171,7 +171,7 @@ class Tarefas extends React.Component {
                     </div>
 
                     <h3 className="h3-tarefas"><center>Tarefas</center></h3>
-                    <Col m={3} s={3} className="grey darken-3">
+                    <Col m={3} s={3} className="grey darken-3 ">
                     <center><h4 className="h4-tarefas">Fazer</h4></center>    
                         <Collection className="collection">
                             {this.state.tarefasTodo.map(this.renderTarefas)}

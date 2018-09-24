@@ -111,7 +111,7 @@ class Funcionario extends Component {
                         <Input id="nome" name="nome" placeholder="teste" value={this.state.nome} onChange={this.changeNome} type="text" label="Nome" s={12}><Icon small>person</Icon></Input>
                         <Input id="email" name="email" placeholder="teste" value={this.state.email} onChange={this.changeEmail} type="text" label="Email" s={12} ><Icon small>email</Icon></Input>
                         <Input id="cpf" name="cpf" placeholder="teste" value={this.state.cpf} type="text" onChange={this.changeCpf} label="CPF" s={12} ><Icon small>assignment_ind</Icon></Input>
-                    <Button onClick={this.handleUpdate} className="grey darken-3 btn-small" type="submit" name="action">
+                    <Button onClick={this.handleUpdate} title="atualizar cadastro" className="grey darken-3 btn-small" type="submit" name="action">
                         <i className="material-icons">update</i>
                     </Button>
 
