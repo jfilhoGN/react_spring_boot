@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`changeSenhaFuncionario render() render component 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-content"
+  >
+    <div>
+      <Row>
+        <Col>
+          <form
+            className="col s13"
+          >
+            <Input
+              checked={false}
+              id="ioldSenha"
+              label="Senha Antiga"
+              name="ioldSenha"
+              onChange={[Function]}
+              s={12}
+              type="password"
+            />
+            <Input
+              checked={false}
+              id="inewSenha"
+              label="Nova Senha"
+              name="inewSenha"
+              onChange={[Function]}
+              s={12}
+              type="password"
+            />
+            <Input
+              checked={false}
+              id="iconfirmSenha"
+              label="Confirmar nova senha"
+              name="iconfirmSenha"
+              onChange={[Function]}
+              s={12}
+              type="password"
+            />
+            <Button
+              className="btn button-espaco waves-effect waves-light btn-small grey darken-3"
+              node="button"
+              onClick={[Function]}
+              type="submit"
+            >
+              <i
+                className="material-icons"
+              >
+                update
+              </i>
+            </Button>
+            <Button
+              className="btn button-espaco waves-effect waves-light btn-small grey darken-3"
+              node="button"
+              onClick={[Function]}
+              type="submit"
+            >
+              <i
+                className="material-icons"
+              >
+                close
+              </i>
+            </Button>
+          </form>
+        </Col>
+      </Row>
+    </div>
+  </div>
+  <div
+    className="card-reveal"
+  >
+    <span
+      className="card-title grey-text text-darken-4"
+    >
+      <Icon
+        right={true}
+      >
+        close
+      </Icon>
+    </span>
+  </div>
+</div>
+`;

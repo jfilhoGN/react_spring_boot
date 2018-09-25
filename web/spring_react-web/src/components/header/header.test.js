@@ -15,14 +15,11 @@ describe('Header', () => {
     });
 
     describe('NavBar', () => {
-        test('click button logout sucessfully', () => {
-            const mockOnClick = jest.fn();
-            const wrapper = shallow(
-                <Header />
-            );
-            /* const component = wrapper.dive();
-            component.find('NavLink').simulate('click');
-            expect(mockOnClick.mock.calls.lenght).toEqual(1); */
+        test('link login', () => {
+            const component = (<Header/>);
+            const wrapper = shallow(component);
+            
+            
         });
         
     });
