@@ -14,8 +14,8 @@ class Tarefas extends React.Component {
             tarefasTodo: [],
             tarefasDoing: [],
             tarefasTest: [],
-            tarefasDone: []
-            
+            tarefasDone: [],
+            tarefasSearch: [] 
         }
         this.arrayholder = [];
         //this.arrayTodo = [];
@@ -107,10 +107,13 @@ class Tarefas extends React.Component {
         const newData = this.arrayholder.filter(item => {
           const itemData = `${item.titulo.toUpperCase()}`; 
           const textData = text.target.value.toUpperCase();
-          return itemData.indexOf(textData) > -1;
+            if(textData.length === 0){
+                return false;
+            }
+            return itemData.includes(textData);
         });
-        this.setState({tarefasTodo: newData}); 
-      } 
+        this.setState({tarefasSearch: newData}); 
+    } 
 
     changeStatus = (status) =>{
         const labels = {
@@ -146,12 +149,12 @@ class Tarefas extends React.Component {
         if (this.state.hasError) {
             return (
               <Row>
-              <Card>
+              <Card  className="card-tarefas">
               <Button onClick={() => this.clickAddTarefa()} title="adicionar tarefa" className="btn waves-effect waves-light btn-small grey lighten-2" type="submit" name="action">
                     <i className="material-icons">add</i>
                 </Button>
                 <p></p>
-              <p><b>Não possui Tarefas cadastrados</b></p>
+              <p color="white"><b>Não possui Tarefas cadastrados</b></p>
               </Card>
               </Row>
             )
@@ -169,6 +172,13 @@ class Tarefas extends React.Component {
                             placeholder="procurar tarefa..." />
                         </form>
                     </div>
+                
+
+                    <Col m={12} s={3} className="grey darken-3 ">   
+                        <Collection className="collection">
+                            {this.state.tarefasSearch.map(this.renderTarefas)}
+                        </Collection>
+                    </Col>
 
                     <h3 className="h3-tarefas"><center>Tarefas</center></h3>
                     <Col m={3} s={3} className="grey darken-3 ">

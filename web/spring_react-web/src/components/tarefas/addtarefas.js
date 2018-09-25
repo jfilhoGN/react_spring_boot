@@ -28,7 +28,8 @@ class AddTarefas extends React.Component {
             status: '',
             hasTarefas: false,
             hasEdit: false,
-            open: false
+            open: false,
+            hasTarefasUp: false
         }
     }
 
@@ -96,9 +97,9 @@ class AddTarefas extends React.Component {
         }
     }
 
-
     //Atualizar Tarefa
-    handleUpdate = () => {
+    handleUpdate = event => {
+        event.preventDefault();
         const {id, token} = this.getFuncionario();
         const url = '/api/tarefas';
         axios.put(url, {
@@ -113,7 +114,8 @@ class AddTarefas extends React.Component {
             }  
         })
         .then(response => {
-             return this.props.history.goBack();
+            this.setState({open:true, hasTarefasUp:true})
+            //return this.props.history.push("/tarefas");
             //console.log(response)
         })
         .catch(error => {
@@ -145,6 +147,30 @@ class AddTarefas extends React.Component {
     };
 
     render() {
+        if (this.state.hasTarefasUp) {
+            return (
+                <div>
+                    <Dialog
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                    >
+                    <DialogTitle id="alert-dialog-title">{"Tarefa Atualizada"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Tarefa Atualizada
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.handleReturnTarefa} color="primary" autoFocus>
+                        Ok
+                        </Button>
+                    </DialogActions>
+                    </Dialog>
+                </div>
+            )
+        }
         if (this.state.hasTarefas) {
             return (
                 <div>
@@ -183,7 +209,7 @@ class AddTarefas extends React.Component {
                             <Select placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                             <br></br>
                         </Col>
-                        <Button onClick={this.handleUpdate} className="btn-small grey darken-3">
+                        <Button onClick={this.handleUpdate} className="btn-small grey darken-3" type="submit">
                             <i className="material-icons">update</i>
                         </Button>
                         </form>  

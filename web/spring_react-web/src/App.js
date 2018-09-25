@@ -24,6 +24,7 @@ class App extends Component {
 
   onLogin = () => {
     this.setState({logado:true});
+    //localStorage.setItem("data", true);
   }
 
   onLogout = () =>{

@@ -98,9 +98,9 @@ class ChangeSenhaFuncionario extends Component {
             <Row>
             <Col>
                 <form className="col s13">
-                    <Input id="ioldSenha" name="ioldSenha" onChange={this.antigSenha} type="text" label="Senha Antiga" s={12}/>
-                    <Input id="inewSenha" name="inewSenha" onChange={this.novaSenha} type="text" label="Nova Senha" s={12}/>
-                    <Input id="iconfirmSenha" name="iconfirmSenha" onChange={this.confirmSenha} type="text" label="Confirmar nova senha" s={12}/>
+                    <Input id="ioldSenha" name="ioldSenha" onChange={this.antigSenha} type="password" label="Senha Antiga" s={12}/>
+                    <Input id="inewSenha" name="inewSenha" onChange={this.novaSenha} type="password" label="Nova Senha" s={12}/>
+                    <Input id="iconfirmSenha" name="iconfirmSenha" onChange={this.confirmSenha} type="password" label="Confirmar nova senha" s={12}/>
                     <Button onClick={this.submitSenha} className="btn button-espaco waves-effect waves-light btn-small grey darken-3" type="submit">
                     <i className="material-icons">update</i>
                     </Button>
