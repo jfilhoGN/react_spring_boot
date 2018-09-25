@@ -17,7 +17,7 @@ const Header = (props) => {
               <li><NavLink to='/'>Home</NavLink></li>
               <li><NavLink title="tarefas" to='/tarefas'><Icon>dashboard</Icon></NavLink></li>
               <li><NavLink title="minha conta" to='/account'><Icon>account_circle</Icon></NavLink></li>
-              <li><NavLink to='/' onClick={onLogout}>Logout</NavLink></li>
+              <li><NavLink name='logout' to='/' onClick={onLogout}>Logout</NavLink></li>
             </div>
             ) :
             <div>

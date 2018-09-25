@@ -18,6 +18,8 @@
   },
   "proxy": "http://192.168.1.132:8080",
   "devDependencies": {
-    "react-test-renderer": "^16.5.2"
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "jest-enzyme": "^6.1.2"
   }
 }

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header return render the component 1`] = `
+<div
+  className="row"
+>
+  <Navbar
+    className="grey darken-3"
+    href="/"
+    options={Object {}}
+  >
+    <div>
+      <li>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          to="/"
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          title="login"
+          to="/login"
+        >
+          <Icon>
+            assignment_ind
+          </Icon>
+        </NavLink>
+      </li>
+    </div>
+  </Navbar>
+</div>
+`;
