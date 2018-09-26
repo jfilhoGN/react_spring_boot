@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddTarefas render component 1`] = `
+<Card>
+  <Row>
+    <form
+      className="col s12"
+      onSubmit={[Function]}
+    >
+      <Input
+        checked={false}
+        id="titulo"
+        label="Título"
+        name="titulo"
+        onChange={[Function]}
+        placeholder="Arrumar Cadastro"
+        s={12}
+        type="text"
+      >
+        <Icon
+          small={true}
+        >
+          title
+        </Icon>
+      </Input>
+      <Input
+        checked={false}
+        id="descricao"
+        label="Descrição"
+        name="descricao"
+        onChange={[Function]}
+        placeholder="criar um campo com cores"
+        s={12}
+        type="text"
+      >
+        <Icon
+          small={true}
+        >
+          description
+        </Icon>
+      </Input>
+      <Col
+        m={12}
+        s={12}
+      >
+        <StateManager
+          className="status"
+          defaultInputValue=""
+          defaultMenuIsOpen={false}
+          defaultValue={null}
+          onChange={[Function]}
+          options={
+            Array [
+              Object {
+                "label": "Fazer",
+                "value": 1,
+              },
+              Object {
+                "label": "Fazendo",
+                "value": 2,
+              },
+              Object {
+                "label": "Em Teste",
+                "value": 4,
+              },
+              Object {
+                "label": "Feito",
+                "value": 5,
+              },
+            ]
+          }
+          placeholder="Status da Tarefa"
+          s={12}
+        />
+        <br />
+      </Col>
+      <Button
+        className="btn-espaco btn-small grey darken-3"
+        name="action"
+        node="button"
+        onClick={[Function]}
+        type="submit"
+      >
+        <i
+          className="material-icons"
+        >
+          add
+        </i>
+      </Button>
+    </form>
+  </Row>
+</Card>
+`;
+
+exports[`AddTarefas values of state 1`] = `[Function]`;

@@ -84,3 +84,5 @@ exports[`changeSenhaFuncionario render component 1`] = `
   </div>
 </div>
 `;
+
+exports[`changeSenhaFuncionario values of state 1`] = `[Function]`;

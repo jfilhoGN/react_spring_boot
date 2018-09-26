@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tarefas render component 1`] = `
+<Card
+  className="card-tarefas"
+>
+  <Row>
+    <Button
+      className="btn waves-effect waves-light btn-small grey"
+      name="action"
+      node="button"
+      onClick={[Function]}
+      title="adicionar tarefa"
+      type="submit"
+    >
+      <i
+        className="material-icons"
+      >
+        add
+      </i>
+    </Button>
+    <div>
+      <form>
+        <input
+          onChange={[Function]}
+          placeholder="procurar tarefa..."
+        />
+      </form>
+    </div>
+    <Col
+      className="grey darken-3 "
+      m={12}
+      s={3}
+    >
+      <Collection
+        className="collection"
+      />
+    </Col>
+    <h3
+      className="h3-tarefas"
+    >
+      <center>
+        Tarefas
+      </center>
+    </h3>
+    <Col
+      className="grey darken-3 "
+      m={3}
+      s={3}
+    >
+      <center>
+        <h4
+          className="h4-tarefas"
+        >
+          Fazer
+        </h4>
+      </center>
+      <Collection
+        className="collection"
+      />
+    </Col>
+    <Col
+      className="grey darken-3"
+      m={3}
+      s={3}
+    >
+      <center>
+        <h4
+          className="h4-tarefas"
+        >
+          Fazendo
+        </h4>
+      </center>
+      <Collection
+        className="collection"
+      />
+    </Col>
+    <Col
+      className="grey darken-3"
+      m={3}
+      s={3}
+    >
+      <center>
+        <h4
+          className="h4-tarefas"
+        >
+          Teste
+        </h4>
+      </center>
+      <Collection
+        className="collection"
+      />
+    </Col>
+    <Col
+      className="grey darken-3"
+      m={3}
+      s={3}
+    >
+      <center>
+        <h4
+          className="h4-tarefas"
+        >
+          Concluido
+        </h4>
+      </center>
+      <Collection
+        className="collection"
+      />
+    </Col>
+  </Row>
+</Card>
+`;

@@ -6,18 +6,13 @@ import Login from './login';
 describe('<Login />', () => {
         
     test('render component', () => {
-            
+        const wrapper = shallow(<Login/>)
+        expect(wrapper).toMatchSnapshot();
     });
-    
 
     test('values of state', () => {
-        const wrapper = shallow(<Login/>)
-        expect(wrapper.state().email).toBe('');
-        expect(wrapper.state().senha).toBe('');
-    });
-        
-
-    test('recebe valores corretamente', () => {
+        const wrapper = shallow(<Login/>);
+        //expect(wrapper.state).toMatchSnapshot();
         //arrumar
     });
 
@@ -33,5 +28,25 @@ describe('<Login />', () => {
         expect(wrapper.state().senha).toEqual('12345');
     });
 
-    
+    test('button login', () => {
+        //arrumar    
+    });
+
+    test('button addFuncionario', () => {
+        //arrumar
+    });
+
+    test('acceptFuncionario()', () => {
+        //arrumar
+    });
+
+    // Ver as funções handleChangeEmail e
+    // handleChangeSenha 
+    // addClick precisam fazer teste
+
+    test('handleSubmit()', () => {
+        //arrumar    
+    });
+
+
 });

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> render component 1`] = `
+<div
+  className="login-page"
+>
+  <form
+    className="formLogin"
+    onSubmit={[Function]}
+  >
+    <FormGroup
+      bsClass="form-group"
+      bsSize="large"
+      controlId="email"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        Email
+      </ControlLabel>
+      <FormControl
+        autoFocus={true}
+        bsClass="form-control"
+        componentClass="input"
+        id="email"
+        onChange={[Function]}
+        type="email"
+      />
+    </FormGroup>
+    <FormGroup
+      bsClass="form-group"
+      bsSize="large"
+      controlId="password"
+    >
+      <ControlLabel
+        bsClass="control-label"
+        srOnly={false}
+      >
+        Senha
+      </ControlLabel>
+      <FormControl
+        bsClass="form-control"
+        componentClass="input"
+        id="senha"
+        onChange={[Function]}
+        type="password"
+      />
+    </FormGroup>
+    <Button
+      active={false}
+      block={true}
+      bsClass="btn"
+      bsSize="large"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+      type="submit"
+    >
+      Login
+    </Button>
+    <br />
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsSize="large"
+      bsStyle="default"
+      disabled={false}
+      onClick={[Function]}
+      type="submit"
+    >
+      Criar Conta
+    </Button>
+  </form>
+</div>
+`;

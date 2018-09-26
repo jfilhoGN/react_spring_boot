@@ -203,10 +203,10 @@ class AddTarefas extends React.Component {
                 <Card>
                     <Row>
                         <form className="col s12" >
-                            <Input id="titulo" name="titulo" value={this.state.titulo} onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
-                            <Input id="descricao" name="descricao" value={this.state.descricao}  onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
+                            <Input id="editTitulo" name="titulo" value={this.state.titulo} onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
+                            <Input id="editDescricao" name="descricao" value={this.state.descricao}  onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
                             <Col s={12} m={12}>
-                            <Select placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
+                            <Select className="editStatus" placeholder="status da tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                             <br></br>
                         </Col>
                         <Button onClick={this.handleUpdate} className="btn-small grey darken-3" type="submit">
@@ -225,7 +225,7 @@ class AddTarefas extends React.Component {
                         <Input id="titulo" name="titulo"  onChange={this.handleTituloTarefa} placeholder="Arrumar Cadastro" type="text" label="Título" s={12}><Icon small>title</Icon></Input>
                         <Input id="descricao" name="descricao" onChange={this.handleDescricaoTarefa} placeholder="criar um campo com cores" type="text" label="Descrição" s={12} ><Icon small>description</Icon></Input>
                         <Col s={12} m={12}>
-                        <Select placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
+                        <Select className="status" placeholder="Status da Tarefa" options={status} onChange={this.handleStatusTarefa} s={12}></Select> 
                         <br></br>
                     </Col>
                     <Button onClick={this.handleClickOpen} className="btn-espaco btn-small grey darken-3" type="submit" name="action">

@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddFuncionario render component 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-content"
+  >
+    <div>
+      <Row>
+        <form
+          className="col s12"
+          onSubmit={[Function]}
+        >
+          <Input
+            checked={false}
+            id="nome"
+            label="Nome"
+            name="nome"
+            onChange={[Function]}
+            placeholder="John Doe"
+            s={12}
+            type="text"
+          >
+            <Icon
+              small={true}
+            >
+              person
+            </Icon>
+          </Input>
+          <Input
+            checked={false}
+            id="email"
+            label="Email"
+            name="email"
+            onChange={[Function]}
+            placeholder="johndoe@john.com"
+            s={12}
+            type="text"
+          >
+            <Icon
+              small={true}
+            >
+              email
+            </Icon>
+          </Input>
+          <Input
+            checked={false}
+            id="cpf"
+            label="CPF"
+            name="cpf"
+            onChange={[Function]}
+            placeholder="111.111.111-11"
+            s={12}
+            type="text"
+          >
+            <Icon
+              small={true}
+            >
+              assignment_ind
+            </Icon>
+          </Input>
+          <Input
+            checked={false}
+            id="senha"
+            label="Senha"
+            name="senha"
+            onChange={[Function]}
+            placeholder="123mudar"
+            s={12}
+            type="password"
+          >
+            <Icon
+              small={true}
+            >
+              lock
+            </Icon>
+          </Input>
+          <Col
+            m={12}
+            s={12}
+          >
+            <Button
+              className="grey darken-3 btn-small"
+              name="action"
+              node="button"
+              onClick={[Function]}
+              type="submit"
+            >
+              <i
+                className="material-icons"
+              >
+                add
+              </i>
+            </Button>
+          </Col>
+        </form>
+      </Row>
+    </div>
+  </div>
+  <div
+    className="card-reveal"
+  >
+    <span
+      className="card-title grey-text text-darken-4"
+    >
+      <Icon
+        right={true}
+      >
+        close
+      </Icon>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`AddFuncionario values of state 1`] = `
+Object {
+  "cpf": "",
+  "email": "",
+  "hasEdit": false,
+  "hasFuncionario": false,
+  "id": "",
+  "nome": "",
+  "senha": "",
+}
+`;

@@ -89,11 +89,9 @@ class AddFuncionario extends React.Component{
 
     componentDidMount() {
         const { match: { params } } = this.props;
-        console.log(params)
         if (params.funcionarioId) {
             axios.get(`/api/colaboradores/${params.funcionarioId}`)
           .then(({ data: user }) => {
-              console.log(user)
             this.setState({ nome:user.nome, email:user.email, cpf:user.cpf, senha:user.senha, hasEdit:true });
           });
         }
@@ -137,9 +135,9 @@ class AddFuncionario extends React.Component{
                 <Card>
                     <Row>
                         <form className="col s12" onSubmit={this.handleSubmit}>
-                            <Input id="nome" name="nome" value={this.state.nome} onChange={this.handleNomeChange} placeholder="John Doe" type="text" label="Nome" s={12}><Icon small>person</Icon></Input>
-                            <Input id="email" name="email" value={this.state.email} onChange={this.handleEmailChange} placeholder="johndoe@john.com" type="text" label="Email" s={12} ><Icon small>email</Icon></Input>
-                            <Input id="cpf" name="cpf" value={this.state.cpf} onChange={this.handleCPFChange} placeholder="111.111.111-11" type="text" label="CPF" s={12} ><Icon small>assignment_ind</Icon></Input>
+                            <Input id="nomeEdit" name="nomeEdit" value={this.state.nome} onChange={this.handleNomeChange} placeholder="John Doe" type="text" label="Nome" s={12}><Icon small>person</Icon></Input>
+                            <Input id="emailEdit" name="email" value={this.state.email} onChange={this.handleEmailChange} placeholder="johndoe@john.com" type="text" label="Email" s={12} ><Icon small>email</Icon></Input>
+                            <Input id="cpfEdit" name="cpf" value={this.state.cpf} onChange={this.handleCPFChange} placeholder="111.111.111-11" type="text" label="CPF" s={12} ><Icon small>assignment_ind</Icon></Input>
                         <Col s={12} m={12}>
                         <Button onClick={this.handleUpdate(this.state)} className="btn waves-effect waves-light btn-small grey darken-3" type="submit" name="action">
                             <i className="material-icons">update</i>
