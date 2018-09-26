@@ -44,7 +44,6 @@ class ChangeSenhaFuncionario extends Component {
         { 
             senhaAntiga:this.state.senhaAtual,
             senhaNova: this.state.novaSenha
-            
         },{
             headers:{
                 'id':id,
@@ -101,7 +100,7 @@ class ChangeSenhaFuncionario extends Component {
                     <Input id="ioldSenha" name="ioldSenha" onChange={this.antigSenha} type="password" label="Senha Antiga" s={12}/>
                     <Input id="inewSenha" name="inewSenha" onChange={this.novaSenha} type="password" label="Nova Senha" s={12}/>
                     <Input id="iconfirmSenha" name="iconfirmSenha" onChange={this.confirmSenha} type="password" label="Confirmar nova senha" s={12}/>
-                    <Button onClick={this.submitSenha} className="btn button-espaco waves-effect waves-light btn-small grey darken-3" type="submit">
+                    <Button onClick={this.submitSenha} className="updateSenha btn button-espaco waves-effect waves-light btn-small grey darken-3" type="submit">
                     <i className="material-icons">update</i>
                     </Button>
                     <Button onClick={this.cancelChangeSenha} className="btn button-espaco waves-effect waves-light btn-small grey darken-3" type="submit">
@@ -113,9 +112,6 @@ class ChangeSenhaFuncionario extends Component {
             </Card>
         )
     }
-
-
-
 }
 
 export default ChangeSenhaFuncionario;

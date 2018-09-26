@@ -9,8 +9,6 @@ class Login extends React.Component {
     this.state = {
       email: "",
       senha: "",
-      isAuth: false,
-      redirectToPreviousRoute: false
     };
   }
 
@@ -19,7 +17,6 @@ class Login extends React.Component {
     sessionStorage.setItem("data", JSON.stringify(json));
     this.props.onLogin()
     this.props.history.push('/tarefas')
-    
   }
 
   handleChangeEmail = event => {
@@ -65,6 +62,7 @@ class Login extends React.Component {
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
             <FormControl
+              id="email"
               autoFocus
               type="email"
               //value={this.state.email}
@@ -74,6 +72,7 @@ class Login extends React.Component {
             <ControlLabel>Senha</ControlLabel>
             <FormControl
               //value={this.state.password}
+              id="senha"
               onChange={this.handleChangeSenha}
               type="password"/>
           </FormGroup>
