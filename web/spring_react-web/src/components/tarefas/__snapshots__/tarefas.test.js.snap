@@ -110,3 +110,5 @@ exports[`Tarefas render component 1`] = `
   </Row>
 </Card>
 `;
+
+exports[`Tarefas values state 1`] = `[Function]`;

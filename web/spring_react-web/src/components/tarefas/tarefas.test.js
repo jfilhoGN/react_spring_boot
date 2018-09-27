@@ -15,11 +15,19 @@ describe('Tarefas', () => {
     });
 
     test('values state', () => {
-        //arrumar
+        const history = {
+            goBack: jest.fn(),
+        }
+        const wrapper = shallow(<Tarefas history={history}/>);
+        expect(wrapper.state).toMatchSnapshot();
     });
 
     test('getTarefas()', () => {
-        //arrumar
+        const history = {
+            goBack: jest.fn(),
+        }
+        const wrapper = shallow(<Tarefas history={history}/>);
+        //terminar
     });
 
     test('deleteClick()', () => {

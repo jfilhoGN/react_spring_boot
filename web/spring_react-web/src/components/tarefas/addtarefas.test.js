@@ -37,8 +37,11 @@ describe('AddTarefas', () => {
         expect(wrapper.state().status).toEqual(1);
     });
 
-    test('button addTarefa', () => {
-        //arrumar
+    test('button click addTarefa', () => {
+        const handleClickOpen = jest.fn();
+        const wrapper = shallow(<AddTarefas match={{params:{id:1}}}/>);
+       /*  wrapper.find('.btn-espaco').simulate('click');
+        expect(wrapper.handleClickOpen).toHavenBeenCalled(); */
     });
 
     test('input text editTitulo', () => {
@@ -87,7 +90,6 @@ describe('AddTarefas', () => {
     test('handleUpdate()', () => {
         //arrumar
     });
-
 
 
 });

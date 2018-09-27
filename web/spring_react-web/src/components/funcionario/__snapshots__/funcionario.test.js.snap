@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Funcionario render Funcionario  1`] = `
+<Card>
+  <Row>
+    <Col>
+      <form
+        className="col s12"
+      >
+        <Input
+          checked={false}
+          id="nome"
+          label="Nome"
+          name="nome"
+          onChange={[Function]}
+          placeholder="teste"
+          s={12}
+          type="text"
+          value=""
+        >
+          <Icon
+            small={true}
+          >
+            person
+          </Icon>
+        </Input>
+        <Input
+          checked={false}
+          id="email"
+          label="Email"
+          name="email"
+          onChange={[Function]}
+          placeholder="teste"
+          s={12}
+          type="text"
+          value=""
+        >
+          <Icon
+            small={true}
+          >
+            email
+          </Icon>
+        </Input>
+        <Input
+          checked={false}
+          id="cpf"
+          label="CPF"
+          name="cpf"
+          onChange={[Function]}
+          placeholder="teste"
+          s={12}
+          type="text"
+          value=""
+        >
+          <Icon
+            small={true}
+          >
+            assignment_ind
+          </Icon>
+        </Input>
+        <Button
+          className="grey darken-3 btn-small"
+          name="action"
+          node="button"
+          onClick={[Function]}
+          title="atualizar cadastro"
+          type="submit"
+        >
+          <i
+            className="material-icons"
+          >
+            update
+          </i>
+        </Button>
+        <Button
+          className="button-espaco grey darken-3 btn-small"
+          name="action"
+          node="button"
+          onClick={[Function]}
+          title="mudar senha"
+          type="submit"
+        >
+          <i
+            className="material-icons"
+          >
+            lock_open
+          </i>
+        </Button>
+      </form>
+    </Col>
+  </Row>
+  <Row>
+    <h4>
+      <center>
+        Tarefas
+      </center>
+    </h4>
+    <center>
+      <p>
+        <b>
+          Para Realizar: 
+        </b>
+         
+         
+      </p>
+    </center>
+    <center>
+      <p>
+        <b>
+          Realizando: 
+        </b>
+         
+         
+      </p>
+    </center>
+    <center>
+      <p>
+        <b>
+          em Teste: 
+        </b>
+         
+      </p>
+    </center>
+    <center>
+      <p>
+        <b>
+          Concluido: 
+        </b>
+         
+      </p>
+    </center>
+  </Row>
+</Card>
+`;

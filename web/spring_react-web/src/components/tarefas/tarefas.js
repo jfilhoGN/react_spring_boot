@@ -140,6 +140,7 @@ class Tarefas extends React.Component {
                 <button onClick={() => this.editClick(tarefa.id)} title="editar tarefa" className="btn button-espaco waves-effect waves-light btn-small grey darken-3 btn-small" type="submit" name="actionEdit">
                     <i className="material-icons">edit</i>
                 </button>
+                
             </CollectionItem>
         )  
            
