@@ -42,7 +42,10 @@ describe('AddFuncionario', () => {
     });
 
     test('button addFuncionario', () => {
-        //arrumar
+        const onButtonClick = sinon.spy();
+        const wrapper = shallow(<AddFuncionario match={{params:{id:1}}} />);
+        wrapper.find('.buttonAdd').simulate('click', { preventDefault() {} });
+        expect(onButtonClick.notCalled).toBe(true);
     });
 
     test('input text editNome', () => {
@@ -67,7 +70,23 @@ describe('AddFuncionario', () => {
     });
 
     test('button updateFuncionario', () => {
-        //arrumar
+        const onButtonClick = sinon.spy();
+        const wrapper = shallow(<AddFuncionario match={{params:{id:1}}} />);
+        wrapper.setState({hasEdit:true});
+        wrapper.find('.buttonUpdate').simulate('click', { preventDefault() {} });
+        expect(onButtonClick.notCalled).toBe(true);
+    });
+
+    test('render dialog', () => {
+        const wrapper = shallow(<AddFuncionario match={{params:{id:1}}}/>);
+        wrapper.setState({hasFuncionario:true});
+        expect(wrapper).toMatchSnapshot();
+    })
+
+    test('button sim Dialog', () => {
+        const onButtonClick = sinon.spy();
+        const wrapper = shallow(<AddFuncionario match={{params:{id:40}}}/>);
+        
     });
 
     //handleUpdate

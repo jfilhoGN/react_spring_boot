@@ -38,13 +38,16 @@ describe('changeSenhaFuncionario', () => {
         expect(wrapper.state().confirmSenha).toEqual('12345');
     });
 
-    /* test('button changeSenha', () => {
+    /* const flushPromises = () => new Promise(resolve => setImmediate(resolve));
+    test('button changeSenha', async () => {
         const onButtonClick = sinon.spy();
+        global.sessionStorage.getItem.mockReturnValue('{"id": "28A5B171C9FF4FBFB4BC0481C0BD0435", "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIyOEE1QjE3MUM5RkY0RkJGQjRCQzA0ODFDMEJEMDQzNSJ9.T4K4br5kaEboh4UIl_gkhYi3FcMD1Wk_bIcQWVv-tRc"}')
         const wrapper = shallow(<ChangeSenhaFuncionario />);
+        await flushPromises();
         wrapper.find('.updateSenha').simulate('click', { preventDefault() {} });
-        expect(onButtonClick.notCalled).to.be.true
-    });
- */
+        expect(onButtonClick.notCalled).toBe(true);
+    }) */
+
     test('submitSenha()', () => {
         //arrumar
     });

@@ -82,7 +82,7 @@ exports[`AddFuncionario render component 1`] = `
             s={12}
           >
             <Button
-              className="grey darken-3 btn-small"
+              className="buttonAdd grey darken-3 btn-small"
               name="action"
               node="button"
               onClick={[Function]}
@@ -112,6 +112,45 @@ exports[`AddFuncionario render component 1`] = `
       </Icon>
     </span>
   </div>
+</div>
+`;
+
+exports[`AddFuncionario render dialog 1`] = `
+<div>
+  <WithStyles(Dialog)
+    aria-describedby="alert-dialog-description"
+    aria-labelledby="alert-dialog-title"
+  >
+    <WithStyles(DialogTitle)
+      id="alert-dialog-title"
+    >
+      Funcionário Cadastrado
+    </WithStyles(DialogTitle)>
+    <WithStyles(DialogContent)>
+      <WithStyles(DialogContentText)
+        id="alert-dialog-description"
+      >
+        Deseja cadastrar novo funcionário?
+      </WithStyles(DialogContentText)>
+    </WithStyles(DialogContent)>
+    <WithStyles(DialogActions)>
+      <Button
+        color="primary"
+        node="button"
+        onClick={[Function]}
+      >
+        Sim
+      </Button>
+      <Button
+        autoFocus={true}
+        color="primary"
+        node="button"
+        onClick={[Function]}
+      >
+        Não
+      </Button>
+    </WithStyles(DialogActions)>
+  </WithStyles(Dialog)>
 </div>
 `;
 
